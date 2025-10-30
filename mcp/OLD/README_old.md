@@ -36,7 +36,7 @@ claude mcp add-json report '{
   "command": "node",
   "args": ["/path/to/mcp/report/index.js"],
   "env": {
-    "REPORT_BUCKET": "mango-reports",
+    "REPORT_BUCKET": "usability-reports",
     "AWS_REGION": "us-east-1",
     "REPORT_EMAIL_FROM": "email@example.com",
     "REPORT_EMAIL_TO": "email@example.com"

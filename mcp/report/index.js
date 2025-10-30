@@ -30,7 +30,7 @@ const md = new MarkdownIt({
 
 // Configuration from environment
 const config = {
-  bucketName: process.env.REPORT_BUCKET || 'mango-reports',
+  bucketName: process.env.REPORT_BUCKET || 'usability-reports',
   region: process.env.AWS_REGION || 'us-east-1',
   emailFrom: process.env.REPORT_EMAIL_FROM || 'reports@example.com',
   emailTo: process.env.REPORT_EMAIL_TO || 'user@example.com',
@@ -53,7 +53,7 @@ function isLocalMode() {
 //
 // These are DIFFERENT credentials from CLAUDE.md!
 // - CLAUDE.md credentials: For general EC2/AWS operations (account 746491138304)
-// - Report MCP credentials: For mango-reports S3 bucket and SES (different account)
+// - Report MCP credentials: For usability-reports S3 bucket and SES (different account)
 //
 // Set these in ~/.bashrc or via setup script for EMAIL mode
 // LOCAL mode (USABILIDE_REPORT_FOLDER set to path) does not need AWS credentials

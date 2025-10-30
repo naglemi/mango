@@ -131,7 +131,7 @@ Once configured, AI can send notifications naturally:
 
 ####  For Michael Nagle (Primary User)
 **Everything is already set up!** You have:
--  S3 bucket: `mango-reports`
+-  S3 bucket: `usability-reports`
 -  Verified email: `slurmalerts1017@gmail.com`
 -  AWS credentials in your shell config
 
@@ -149,7 +149,7 @@ Just use these existing resources when running setup.
 ./setup-report-mcp.sh
 
 # Enter when prompted:
-# - S3 bucket name: mango-reports
+# - S3 bucket name: usability-reports
 # - From email: slurmalerts1017@gmail.com
 # - To email: slurmalerts1017@gmail.com
 ```
@@ -335,7 +335,7 @@ claude mcp add-json report-s3 '{
   "command": "node",
   "args": ["/absolute/path/to/usability/mcp/report/index.js"],
   "env": {
-    "REPORT_BUCKET": "mango-reports",
+    "REPORT_BUCKET": "usability-reports",
     "AWS_REGION": "us-east-1",
     "REPORT_EMAIL_FROM": "slurmalerts1017@gmail.com",
     "REPORT_EMAIL_TO": "slurmalerts1017@gmail.com",

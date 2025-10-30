@@ -6,7 +6,7 @@ const server = spawn('node', ['index.js'], {
   cwd: '/Users/michaelnagle/code/usability/mcp/report',
   env: {
     ...process.env,
-    REPORT_BUCKET: 'mango-reports',
+    REPORT_BUCKET: 'usability-reports',
     AWS_REGION: 'us-east-1',
     REPORT_EMAIL_FROM: 'slurmalerts1017@gmail.com',
     REPORT_EMAIL_TO: 'slurmalerts1017@gmail.com',

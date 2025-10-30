@@ -37,10 +37,10 @@ def process_file(filepath):
             content = content.replace('$HOME/mango', '$HOME/mango')
             changes.append('path: $HOME/mango -> $HOME/mango')
 
-        # Replace mango-reports bucket with mango-reports
-        if 'mango-reports' in content:
-            content = content.replace('mango-reports', 'mango-reports')
-            changes.append('bucket: mango-reports -> mango-reports')
+        # Replace usability-reports bucket with usability-reports
+        if 'usability-reports' in content:
+            content = content.replace('usability-reports', 'usability-reports')
+            changes.append('bucket: usability-reports -> usability-reports')
 
         # Replace .mango_ prefixes with .mango_
         if '.mango_' in content:
