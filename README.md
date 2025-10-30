@@ -2,7 +2,11 @@
 
 **M**anagement of **A**gents with **N**otebooks and **G**it **O**versight
 
-A rigorous system for managing AI agents with git-based workflows and reproducible research. MANGO provides a hook manager with a friendly UI where users can remotely add, edit, and modify hooks and instructions to enforce their own replicability standards. Users control which programmatic hooks validate notebook reproducibility and code quality. Install the features you want or the whole thing.
+A package of MCP server extensions, Claude Code workflows, hooks and settings interfaces, tmux configurations and more to help:
+- Reduce agent hallucinations by programmatically blocking patterns associated with fabrications, such as statistics in Jupyter Notebook text blocks
+- Support multi-agent communication, management and organization
+- Provide user-friendly interfaces for both desktop and mobile
+- Enhance overall productivity and rigor in agentic coding
 
 ## Quick Start
 
