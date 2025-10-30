@@ -20,6 +20,13 @@ PLEA.md
 .claude/
 specs/
 
+# One-off utility scripts (not part of core system)
+rename_project.py
+emergency_disable_hooks.sh
+
+# Credentials and sensitive files
+CREDENTIALS.md
+
 # Backup files (may contain credentials)
 *.backup
 

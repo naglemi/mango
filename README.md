@@ -2,7 +2,7 @@
 
 **M**anagement of **A**gents with **N**otebooks and **G**it **O**versight
 
-A rigorous system for managing multiple AI agents with precise oversight, git-based workflows, and collaborative research capabilities. Not for vibe coding - for serious agent orchestration. Advances in the accessibility and democratization of coding should be celebrated, as should folks learning new skills, so that's not meant as a criticism of anyone who identifies as a vibe coder. With MANGO, we aim to make rigorous coding practices more user-friendly and beginner-friendly.
+A rigorous system for managing AI agents with git-based workflows and reproducible research. MANGO enforces replicability standards through programmatic hooks that prevent pushing Jupyter notebooks unless they meet quality criteria. Git commits are mandatory before code execution, notebooks must execute cleanly, and all outputs are version-controlled. Programmatic hooks validate notebook reproducibility, ensuring computational work meets publication standards.
 
 ## Quick Start
 
