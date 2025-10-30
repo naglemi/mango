@@ -2,7 +2,7 @@
 
 **M**anagement of **A**gents with **N**otebooks and **G**it **O**versight
 
-A rigorous system for managing AI agents with git-based workflows and reproducible research. MANGO enforces replicability standards through programmatic hooks that prevent pushing Jupyter notebooks unless they meet quality criteria. Git commits are mandatory before code execution, notebooks must execute cleanly, and all outputs are version-controlled. Programmatic hooks validate notebook reproducibility, ensuring computational work meets publication standards.
+A rigorous system for managing AI agents with git-based workflows and reproducible research. MANGO provides a hook manager with a friendly UI where users can remotely add, edit, and modify hooks and instructions to enforce their own replicability standards. Users control which programmatic hooks validate notebook reproducibility and code quality. Install the features you want or the whole thing.
 
 ## Quick Start
 
