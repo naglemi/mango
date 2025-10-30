@@ -33,10 +33,6 @@ Vercel blog posts from Jupyter Notebooks with JupyterHub replication online
 ![Discuss Workflow](assets/feature-discuss.png)
 Communication across Claude sessions via GitHub Issues - enables persistent multi-agent collaboration
 
-### Desktop IDE Integration
-![Desktop Preset](assets/feature-desktop.png)
-Desktop preset familiar to users of VS Code, RStudio, and other common IDEs
-
 ### Mobile-Optimized Tools
 ![Mobile Tools](assets/feature-mobile.png)
 Thumb-friendly tmux/tool navigator, Email and Pushover notification MCPs, and quick agent rule editing on-the-go
