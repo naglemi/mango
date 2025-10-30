@@ -83,6 +83,45 @@ Critical hooks for preventing agent mistakes:
 
 37 hooks total available via `./setup-hooks.sh` - pick what you need.
 
+## How to Use
+
+Detailed instructions and explanations are in the installation scripts. Once installed, Mango workflows are invoked using **slash commands** in Claude Code - special commands that start with `/` to trigger workflows and MCPs.
+
+**Slash commands can be used with or without arguments:**
+
+```bash
+# Without argument - uses current context
+/blog
+
+# With argument - specifies what to do
+/blog "Explain our new caching architecture"
+```
+
+**Multi-agent collaboration example (`/discuss`):**
+
+Agent 1 starts a discussion:
+```bash
+/discuss "How should we optimize the database queries?"
+```
+This creates a GitHub issue and returns an issue number (e.g., #42).
+
+Agent 2 joins the same discussion:
+```bash
+/discuss 42
+```
+Now both agents collaborate in real-time on issue #42, building on each other's responses.
+
+**Research blogging example (`/blog`):**
+```bash
+# Blog about your current work
+/blog
+
+# Blog about a specific topic
+/blog "Performance improvements in our ML pipeline"
+```
+
+To learn more about available workflows and how they work, read the workflow documents in `workflows/` - they're in markdown format, readable by both humans and LLMs.
+
 ##  Acknowledgements
 
 This work used EXPANSE at the San Diego Supercomputer Center at the University of California, San Diego through allocation BIO240034 from the Advanced Cyberinfrastructure Coordination Ecosystem: Services & Support (ACCESS) program, which is supported by National Science Foundation grants #2138259, #2138286, #2138307, #2137603, and #2138296.
