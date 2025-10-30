@@ -17,12 +17,11 @@ mcp/MICHAEL_NAGLE_SETUP.md
 
 # Personal workflow files
 PLEA.md
-.claude/commands/specify.md
+.claude/
+specs/
 
 # Backup files (may contain credentials)
 *.backup
-.claude/settings*.json
-.claude/.claude_backups/
 
 # OS Files
 .DS_Store
@@ -37,14 +36,17 @@ PLEA.md
 *.log
 pushover.log
 
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
 # Node.js dependencies
 node_modules/
 
 # Old/deprecated files
-OLD/__pycache__/
+OLD/
 .affidavits/
 temp/
 aws_credentials.sh
 workflows/.blog-config.tmp
-# OLD backup files with potentially sensitive data
-OLD_*
