@@ -85,7 +85,7 @@ As a user on various mobile devices, I want the trimmed menu to work correctly r
 
 ### Key Entities *(include if feature involves data)*
 
-- **ICONS Menu Popup**: A tmux `display-popup` that appears when clicking the ICONS button in the top-right status bar. Runs `$HOME/usability/tmux/mobile-menu.sh` to render a 4×5 grid of icon buttons (12 chars wide × 6 lines tall per button). Currently opens at 100% width/height (`-w 100% -h 100%`) leaving blank padding on right and bottom edges.
+- **ICONS Menu Popup**: A tmux `display-popup` that appears when clicking the ICONS button in the top-right status bar. Runs `$HOME/mango/tmux/mobile-menu.sh` to render a 4×5 grid of icon buttons (12 chars wide × 6 lines tall per button). Currently opens at 100% width/height (`-w 100% -h 100%`) leaving blank padding on right and bottom edges.
 - **Status Bar**: The tmux status bar at the top of the screen with ICONS button trigger (defined in tmux.conf.template line 141)
 - **Terminal View**: The background terminal pane content that should be visible through trimmed popup edges
 - **Grid Layout**: Fixed 4 columns × 5 rows with borders, spacing, and header. Total dimensions must be calculated from button size + borders + spacing + header lines.
@@ -116,7 +116,7 @@ As a user on various mobile devices, I want the trimmed menu to work correctly r
 ### Technical Details
 
 - **Target file**: `tmux/tmux.conf.template` line 141
-- **Current implementation**: `bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 100% -h 100% '$HOME/usability/tmux/mobile-menu.sh'`
+- **Current implementation**: `bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 100% -h 100% '$HOME/mango/tmux/mobile-menu.sh'`
 - **Problem**: The `-w 100% -h 100%` causes the popup to fill the entire screen, leaving blank padding around the 4×5 grid
 - **Solution approach**: Calculate exact width/height values based on grid geometry instead of using 100%
 - **Grid geometry**:

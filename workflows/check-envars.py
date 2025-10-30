@@ -29,7 +29,7 @@ MCP_ENV_REQUIREMENTS = {
         },
         "optional_vars": ["REPORT_AWS_ACCESS_KEY_ID", "REPORT_AWS_SECRET_ACCESS_KEY"],
         "mode_check": "USABILIDE_REPORT_FOLDER",
-        "instructions": "For EMAIL mode (cloud reports via S3/SES):\n  - Enter AWS credentials for the usability-reports S3 bucket\n  - These are DIFFERENT from CLAUDE.md credentials\n  - Report MCP needs its own dedicated AWS account credentials\n\nFor LOCAL mode (filesystem reports):\n  - Set USABILIDE_REPORT_FOLDER to a directory path\n  - AWS credentials are NOT needed in LOCAL mode"
+        "instructions": "For EMAIL mode (cloud reports via S3/SES):\n  - Enter AWS credentials for the mango-reports S3 bucket\n  - These are DIFFERENT from CLAUDE.md credentials\n  - Report MCP needs its own dedicated AWS account credentials\n\nFor LOCAL mode (filesystem reports):\n  - Set USABILIDE_REPORT_FOLDER to a directory path\n  - AWS credentials are NOT needed in LOCAL mode"
     },
     "gpt5-proxy": {
         "name": "GPT-5 Proxy",

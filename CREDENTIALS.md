@@ -24,7 +24,7 @@ This project uses **multiple AWS credential sets** for different purposes. It's 
 - `REPORT_AWS_ACCESS_KEY_ID` (user-provided during setup)
 - `REPORT_AWS_SECRET_ACCESS_KEY` (user-provided during setup)
 
-**Purpose**: S3 uploads to `usability-reports` bucket and SES email delivery
+**Purpose**: S3 uploads to `mango-reports` bucket and SES email delivery
 **Used By**: Report MCP (EMAIL mode only)
 **Account**: Different from CLAUDE.md credentials
 

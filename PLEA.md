@@ -136,9 +136,9 @@ Not yet attempted - exploring efficiency concerns
 
 **Environment Configuration**:
 - Claude Code version: Unknown (not in status bar JSON)
-- Project directory: /home/ubuntu/usability
+- Project directory: /home/ubuntu/mango
 - Working with hooks infrastructure already in place
-- Stop hook currently configured: `/home/ubuntu/usability/hooks/stop-hook-pushover.py`
+- Stop hook currently configured: `/home/ubuntu/mango/hooks/stop-hook-pushover.py`
 - Hook parses transcript.jsonl successfully for Pushover notifications
 
 **Existing Hook Infrastructure**:
@@ -148,7 +148,7 @@ Not yet attempted - exploring efficiency concerns
     "Stop": [
       {
         "type": "command",
-        "command": "python3 /home/ubuntu/usability/hooks/stop-hook-pushover.py",
+        "command": "python3 /home/ubuntu/mango/hooks/stop-hook-pushover.py",
         "timeout": 5
       }
     ]
@@ -228,7 +228,7 @@ Not yet attempted - exploring efficiency concerns
 
 **Project**: usability (tmux/PyAutoGUI automation tools)
 **Branch**: 001-i-want-the
-**Directory**: /home/ubuntu/usability
+**Directory**: /home/ubuntu/mango
 **Git Status**:
 ```
 M hooks/configure-hooks.py
@@ -271,22 +271,22 @@ f605eb8 feat: add Settings option to Mango launcher menu
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/ubuntu/usability/hooks/block-file-versions.py",
+            "command": "python3 /home/ubuntu/mango/hooks/block-file-versions.py",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "python3 /home/ubuntu/usability/hooks/block-bad-filenames.py",
+            "command": "python3 /home/ubuntu/mango/hooks/block-bad-filenames.py",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "python3 /home/ubuntu/usability/hooks/block-filename-proliferation.py",
+            "command": "python3 /home/ubuntu/mango/hooks/block-filename-proliferation.py",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "python3 /home/ubuntu/usability/hooks/block-homedir-edits.py",
+            "command": "python3 /home/ubuntu/mango/hooks/block-homedir-edits.py",
             "timeout": 5
           }
         ]
@@ -296,7 +296,7 @@ f605eb8 feat: add Settings option to Mango launcher menu
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/ubuntu/usability/hooks/block-hook-editing.py",
+            "command": "python3 /home/ubuntu/mango/hooks/block-hook-editing.py",
             "timeout": 5
           }
         ]
@@ -306,37 +306,37 @@ f605eb8 feat: add Settings option to Mango launcher menu
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/ubuntu/usability/hooks/python-lint-before-run.py",
+            "command": "python3 /home/ubuntu/mango/hooks/python-lint-before-run.py",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "python3 /home/ubuntu/usability/hooks/block-error-hiding.py",
+            "command": "python3 /home/ubuntu/mango/hooks/block-error-hiding.py",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "python3 /home/ubuntu/usability/hooks/block-sed-editing.py",
+            "command": "python3 /home/ubuntu/mango/hooks/block-sed-editing.py",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "python3 /home/ubuntu/usability/hooks/protect-env-vars.py",
+            "command": "python3 /home/ubuntu/mango/hooks/protect-env-vars.py",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "python3 /home/ubuntu/usability/hooks/block-git-stash.py",
+            "command": "python3 /home/ubuntu/mango/hooks/block-git-stash.py",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "python3 /home/ubuntu/usability/hooks/block-python-c-inline.py",
+            "command": "python3 /home/ubuntu/mango/hooks/block-python-c-inline.py",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "python3 /home/ubuntu/usability/hooks/block-rm.py",
+            "command": "python3 /home/ubuntu/mango/hooks/block-rm.py",
             "timeout": 5
           }
         ]
@@ -345,7 +345,7 @@ f605eb8 feat: add Settings option to Mango launcher menu
     "Stop": [
       {
         "type": "command",
-        "command": "python3 /home/ubuntu/usability/hooks/stop-hook-pushover.py",
+        "command": "python3 /home/ubuntu/mango/hooks/stop-hook-pushover.py",
         "timeout": 5
       }
     ]
@@ -354,7 +354,7 @@ f605eb8 feat: add Settings option to Mango launcher menu
 }
 ```
 
-===== /home/ubuntu/usability/hooks/stop-hook-pushover.py =====
+===== /home/ubuntu/mango/hooks/stop-hook-pushover.py =====
 ```python
 #!/usr/bin/env python3
 """

@@ -9,7 +9,7 @@ Allowed edit locations:
 - /home/ubuntu/finetune_safe/
 - /home/ubuntu/blog-with-comments-a2/
 - /home/ubuntu/trl-fork/
-- /home/ubuntu/usability/ (for hook development only)
+- /home/ubuntu/mango/ (for hook development only)
 
 All other locations in /home/ubuntu are FORBIDDEN.
 """
@@ -34,7 +34,7 @@ def main():
         "/home/ubuntu/finetune_safe/",
         "/home/ubuntu/blog-with-comments-a2/",
         "/home/ubuntu/trl-fork/",
-        "/home/ubuntu/usability/hooks/",  # Only for hook development
+        "/home/ubuntu/mango/hooks/",  # Only for hook development
     ]
 
     # Check if file is in an allowed directory
@@ -58,7 +58,7 @@ Allowed edit locations:
   - /home/ubuntu/finetune_safe/
   - /home/ubuntu/blog-with-comments-a2/
   - /home/ubuntu/trl-fork/
-  - /home/ubuntu/usability/hooks/ (hook development only)
+  - /home/ubuntu/mango/hooks/ (hook development only)
 
 DO NOT attempt to edit:
   - ~/.claude/settings.json

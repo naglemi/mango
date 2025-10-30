@@ -7,7 +7,7 @@ A complete MCP server for fact-based time estimation using filesystem timestamps
 ## Files Created
 
 ```
-~/usability/mcp/time-estimator/
+~/mango/mcp/time-estimator/
 ├── time_estimator_mcp_server.py  # MCP server implementation
 ├── README.md                      # Tool documentation
 └── INTEGRATION.md                 # This file
@@ -22,7 +22,7 @@ A complete MCP server for fact-based time estimation using filesystem timestamps
 
 ## Configuration
 
-Added to `~/usability/mcp/configure-mcp-servers.sh`:
+Added to `~/mango/mcp/configure-mcp-servers.sh`:
 
 ```python
 'time-estimator': {
@@ -34,7 +34,7 @@ Added to `~/usability/mcp/configure-mcp-servers.sh`:
 
 Registered in `~/.claude.json` by running:
 ```bash
-cd ~/usability/mcp && bash configure-mcp-servers.sh
+cd ~/mango/mcp && bash configure-mcp-servers.sh
 ```
 
 ## MCP Tools Available
@@ -90,7 +90,7 @@ Both share the same core analysis logic but provide different interfaces:
 
 ### Test MCP Server Directly
 ```bash
-cd ~/usability/mcp/time-estimator
+cd ~/mango/mcp/time-estimator
 python3 time_estimator_mcp_server.py << 'EOF'
 {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}}
 {"jsonrpc": "2.0", "id": 2, "method": "tools/list"}

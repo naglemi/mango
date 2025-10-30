@@ -35,7 +35,7 @@ Set TMUX's `default-terminal` to `tmux-256color` (or `screen-256color` on older 
 
 ### What Was Changed
 
-Added to `~/.tmux.conf` and `~/usability/tmux/tmux.conf`:
+Added to `~/.tmux.conf` and `~/mango/tmux/tmux.conf`:
 
 ```bash
 # Set proper terminal type to fix carriage return issues in TUI apps
@@ -98,7 +98,7 @@ Older systems might not have the `tmux-256color` terminfo entry. If you get erro
 1. Edit both config files:
    ```bash
    vim ~/.tmux.conf
-   vim ~/usability/tmux/tmux.conf
+   vim ~/mango/tmux/tmux.conf
    ```
 
 2. Change the line to:

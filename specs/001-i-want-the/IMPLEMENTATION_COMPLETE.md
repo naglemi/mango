@@ -60,7 +60,7 @@ If any issues occur:
 ```bash
 # Revert both files to original values:
 # In tmux.conf.template line 141 and ~/.tmux.conf line 193, change:
-bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 100% -h 100% '$HOME/usability/tmux/mobile-menu.sh'
+bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 100% -h 100% '$HOME/mango/tmux/mobile-menu.sh'
 
 # Then reload:
 tmux source-file ~/.tmux.conf

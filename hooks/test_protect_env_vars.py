@@ -10,7 +10,7 @@ def test_hook(command, should_block=False):
     input_data = {
         "session_id": "test123",
         "transcript_path": "/tmp/test.jsonl",
-        "cwd": "/home/ubuntu/usability",
+        "cwd": "/home/ubuntu/mango",
         "hook_event_name": "PreToolUse",
         "tool_name": "Bash",
         "tool_input": {
@@ -20,7 +20,7 @@ def test_hook(command, should_block=False):
     
     # Run the hook script
     result = subprocess.run(
-        ["/home/ubuntu/usability/hooks/protect-env-vars.py"],
+        ["/home/ubuntu/mango/hooks/protect-env-vars.py"],
         input=json.dumps(input_data),
         capture_output=True,
         text=True

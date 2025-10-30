@@ -58,7 +58,7 @@ The MCP is designed to be used in `/plea` and `/o3plea` workflows:
 
 ```
 Instead of CLI:
-~/usability/ninjagrab.sh train.py utils.py config.yaml
+~/mango/ninjagrab.sh train.py utils.py config.yaml
 
 Use MCP:
 "Use the ninjagrab MCP to collect these files: train.py utils.py config.yaml"

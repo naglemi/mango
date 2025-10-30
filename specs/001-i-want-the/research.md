@@ -132,12 +132,12 @@ Row 4 prints: 1 + 6 + 1 + 0 = 8 lines (no trailing newline)
 
 Current line in `tmux/tmux.conf.template` (line 141):
 ```bash
-bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 100% -h 100% '$HOME/usability/tmux/mobile-menu.sh'
+bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 100% -h 100% '$HOME/mango/tmux/mobile-menu.sh'
 ```
 
 New line:
 ```bash
-bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 59 -h 46 '$HOME/usability/tmux/mobile-menu.sh'
+bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 59 -h 46 '$HOME/mango/tmux/mobile-menu.sh'
 ```
 
 ## Verification Checklist

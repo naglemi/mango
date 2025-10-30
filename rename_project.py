@@ -22,35 +22,35 @@ def process_file(filepath):
         original_content = content
         changes = []
 
-        # Replace /home/ubuntu/usability with /home/ubuntu/mango
-        if '/home/ubuntu/usability' in content:
-            content = content.replace('/home/ubuntu/usability', '/home/ubuntu/mango')
-            changes.append('path: /home/ubuntu/usability -> /home/ubuntu/mango')
+        # Replace /home/ubuntu/mango with /home/ubuntu/mango
+        if '/home/ubuntu/mango' in content:
+            content = content.replace('/home/ubuntu/mango', '/home/ubuntu/mango')
+            changes.append('path: /home/ubuntu/mango -> /home/ubuntu/mango')
 
-        # Replace ~/usability with ~/mango
-        if '~/usability' in content:
-            content = content.replace('~/usability', '~/mango')
-            changes.append('path: ~/usability -> ~/mango')
+        # Replace ~/mango with ~/mango
+        if '~/mango' in content:
+            content = content.replace('~/mango', '~/mango')
+            changes.append('path: ~/mango -> ~/mango')
 
-        # Replace $HOME/usability with $HOME/mango
-        if '$HOME/usability' in content:
-            content = content.replace('$HOME/usability', '$HOME/mango')
-            changes.append('path: $HOME/usability -> $HOME/mango')
+        # Replace $HOME/mango with $HOME/mango
+        if '$HOME/mango' in content:
+            content = content.replace('$HOME/mango', '$HOME/mango')
+            changes.append('path: $HOME/mango -> $HOME/mango')
 
-        # Replace usability-reports bucket with mango-reports
-        if 'usability-reports' in content:
-            content = content.replace('usability-reports', 'mango-reports')
-            changes.append('bucket: usability-reports -> mango-reports')
+        # Replace mango-reports bucket with mango-reports
+        if 'mango-reports' in content:
+            content = content.replace('mango-reports', 'mango-reports')
+            changes.append('bucket: mango-reports -> mango-reports')
 
-        # Replace .usability_ prefixes with .mango_
-        if '.usability_' in content:
-            content = content.replace('.usability_', '.mango_')
-            changes.append('prefix: .usability_ -> .mango_')
+        # Replace .mango_ prefixes with .mango_
+        if '.mango_' in content:
+            content = content.replace('.mango_', '.mango_')
+            changes.append('prefix: .mango_ -> .mango_')
 
-        # Replace "Usability Toolkit" with "Mango Toolkit"
-        if 'Usability Toolkit' in content:
-            content = content.replace('Usability Toolkit', 'Mango Toolkit')
-            changes.append('name: Usability Toolkit -> Mango Toolkit')
+        # Replace "Mango Toolkit" with "Mango Toolkit"
+        if 'Mango Toolkit' in content:
+            content = content.replace('Mango Toolkit', 'Mango Toolkit')
+            changes.append('name: Mango Toolkit -> Mango Toolkit')
 
         # Replace usability/workflows with mango/workflows (case where not full path)
         if 'usability/workflows' in content and '/home/ubuntu/mango/workflows' not in content:
@@ -68,7 +68,7 @@ def process_file(filepath):
         return False, [f'ERROR: {e}']
 
 def main():
-    base_dir = Path('/home/ubuntu/usability')
+    base_dir = Path('/home/ubuntu/mango')
     extensions = {'.sh', '.py', '.js', '.mjs', '.json', '.md', '.conf'}
 
     print("🥭 Renaming project from 'usability' to 'mango'\n")

@@ -6,7 +6,7 @@ A lightweight MCP server for managing frequent text and image reports through S3
 
 **You already have S3 and SES configured!** When setting up on a new machine:
 
-1. **Use existing S3 bucket**: `usability-reports`
+1. **Use existing S3 bucket**: `mango-reports`
 2. **Use verified email**: `slurmalerts1017@gmail.com` (already verified in SES)
 3. **AWS credentials**: Already in your `~/.bashrc` or `~/.zshrc`
 
@@ -14,7 +14,7 @@ Just run:
 ```bash
 ./setup-report-mcp.sh
 # When prompted:
-# S3 Bucket: usability-reports
+# S3 Bucket: mango-reports
 # Region: us-east-1  
 # From email: slurmalerts1017@gmail.com
 # To email: slurmalerts1017@gmail.com
@@ -121,7 +121,7 @@ Body includes:
 
 ### For Michael Nagle (Existing Infrastructure)
 
-1. **S3 Bucket**:  Already exists - `usability-reports`
+1. **S3 Bucket**:  Already exists - `mango-reports`
 2. **AWS SES**:  Already verified - `slurmalerts1017@gmail.com`
 3. **AWS Credentials**:  Already in your shell config
 4. **Node.js**: Just need to install if not present

@@ -43,8 +43,8 @@ if [[ "$USER" == "michaelnagle" ]] || [[ "$USER" == "mnagle" ]]; then
 fi
 
 # S3 Bucket
-read -p "S3 Bucket name for reports [usability-reports]: " BUCKET_NAME
-BUCKET_NAME=${BUCKET_NAME:-usability-reports}
+read -p "S3 Bucket name for reports [mango-reports]: " BUCKET_NAME
+BUCKET_NAME=${BUCKET_NAME:-mango-reports}
 
 # AWS Region
 read -p "AWS Region [us-east-1]: " AWS_REGION

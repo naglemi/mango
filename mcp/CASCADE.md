@@ -64,7 +64,7 @@ Create (or update) `~/.codeium/windsurf/mcp_config.json` with:
       "command": "node",
       "args": ["/absolute/path/to/your/project/mcp/report/index.js"],
       "env": {
-        "REPORT_BUCKET": "usability-reports",
+        "REPORT_BUCKET": "mango-reports",
         "AWS_REGION": "us-east-1",
         "REPORT_EMAIL_FROM": "slurmalerts1017@gmail.com",
         "REPORT_EMAIL_TO": "slurmalerts1017@gmail.com",

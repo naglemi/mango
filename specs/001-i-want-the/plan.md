@@ -1,7 +1,7 @@
 # Implementation Plan: Mobile Menu Padding Removal
 
 **Branch**: `001-i-want-the` | **Date**: 2025-10-29 | **Spec**: [spec.md](./spec.md)
-**Input**: Feature specification from `/home/ubuntu/usability/specs/001-i-want-the/spec.md`
+**Input**: Feature specification from `/home/ubuntu/mango/specs/001-i-want-the/spec.md`
 
 ## Summary
 
@@ -74,12 +74,12 @@ See [research.md](./research.md) for detailed dimension calculations.
 
 **Current**:
 ```bash
-bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 100% -h 100% '$HOME/usability/tmux/mobile-menu.sh'
+bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 100% -h 100% '$HOME/mango/tmux/mobile-menu.sh'
 ```
 
 **New**:
 ```bash
-bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 59 -h 46 '$HOME/usability/tmux/mobile-menu.sh'
+bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 59 -h 46 '$HOME/mango/tmux/mobile-menu.sh'
 ```
 
 **Changes**:
@@ -149,7 +149,7 @@ From the grid rendering code in `mobile-menu.sh`:
 If mouse coordinates break or other issues arise:
 ```bash
 # Revert line 141 in tmux.conf.template back to:
-bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 100% -h 100% '$HOME/usability/tmux/mobile-menu.sh'
+bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 100% -h 100% '$HOME/mango/tmux/mobile-menu.sh'
 ```
 
 Then reload: `tmux source-file ~/.tmux.conf`

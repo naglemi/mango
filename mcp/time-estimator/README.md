@@ -176,7 +176,7 @@ Added to `~/.claude.json` by `configure-mcp-servers.sh`:
   "mcpServers": {
     "time-estimator": {
       "command": "python3",
-      "args": ["/home/ubuntu/usability/mcp/time-estimator/time_estimator_mcp_server.py"],
+      "args": ["/home/ubuntu/mango/mcp/time-estimator/time_estimator_mcp_server.py"],
       "env": {}
     }
   }

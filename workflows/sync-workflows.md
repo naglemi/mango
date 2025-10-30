@@ -1,5 +1,5 @@
 ---
-description: Sync workflow files between ~/usability/workflows/ and Claude commands directories with git safety checks
+description: Sync workflow files between ~/mango/workflows/ and Claude commands directories with git safety checks
 allowed-tools: Bash(git *), Bash(cp *), Bash(ls *), Bash(diff *), Read, Write, mcp__report__send_report
 ---
 
@@ -12,7 +12,7 @@ This workflow manages one-way synchronization of workflow markdown files between
 **IMPORTANT: Do NOT confuse these directories:**
 - `~/.claude/commands/` = User-level Claude commands directory (in HOME directory)
 - `./.claude/commands/` = Project-level Claude commands directory (in CURRENT project)
-- `~/usability/workflows/` = Central workflow repository (source of truth)
+- `~/mango/workflows/` = Central workflow repository (source of truth)
 
 ## User Intent Recognition
 
@@ -20,14 +20,14 @@ When the user requests workflow sync, determine their intent:
 
 ### Option 1: Central Repo → User Commands
 **Intent**: "Sync workflows to my user commands" or "Update my Claude commands from the repo"
-- **Source**: `~/usability/workflows/`
+- **Source**: `~/mango/workflows/`
 - **Destination**: `~/.claude/commands/`
 - **Direction**: ONE-WAY ONLY (central repo → user commands)
 
 ### Option 2: Project Commands → Central Repo
 **Intent**: "Sync project workflows back to the repo" or "Update repo from project commands"
 - **Source**: `./.claude/commands/` (project-level)
-- **Destination**: `~/usability/workflows/`
+- **Destination**: `~/mango/workflows/`
 - **Direction**: ONE-WAY ONLY (project commands → central repo)
 
 **If unclear which direction**, ask the user to clarify before proceeding.
@@ -40,7 +40,7 @@ When the user requests workflow sync, determine their intent:
 
 ### Step 1: Check Git Status
 ```bash
-cd ~/usability
+cd ~/mango
 git status
 ```
 
@@ -52,7 +52,7 @@ git status
 
 ### Step 2: Sync with Remote
 ```bash
-cd ~/usability
+cd ~/mango
 git pull origin main
 ```
 
@@ -96,7 +96,7 @@ If ANY blocker is encountered:
 mkdir -p ~/.claude/commands/
 
 # Copy all markdown files from central repo to user commands
-cd ~/usability/workflows/
+cd ~/mango/workflows/
 for file in *.md; do
   if [ -f "$file" ]; then
     echo "Syncing: $file → ~/.claude/commands/"
@@ -105,7 +105,7 @@ for file in *.md; do
 done
 
 # Verify sync
-echo " Sync complete: ~/usability/workflows/ → ~/.claude/commands/"
+echo " Sync complete: ~/mango/workflows/ → ~/.claude/commands/"
 ls -la ~/.claude/commands/*.md
 ```
 
@@ -129,18 +129,18 @@ fi
 cd ./.claude/commands/
 for file in *.md; do
   if [ -f "$file" ]; then
-    echo "Syncing: $file → ~/usability/workflows/"
-    cp -f "$file" ~/usability/workflows/
+    echo "Syncing: $file → ~/mango/workflows/"
+    cp -f "$file" ~/mango/workflows/
   fi
 done
 
 # Verify sync
-echo " Sync complete: ./.claude/commands/ → ~/usability/workflows/"
-ls -la ~/usability/workflows/*.md
+echo " Sync complete: ./.claude/commands/ → ~/mango/workflows/"
+ls -la ~/mango/workflows/*.md
 ```
 
 **Verification**:
-- List all .md files in `~/usability/workflows/`
+- List all .md files in `~/mango/workflows/`
 - Confirm new/updated files are present
 - Show diff summary if files were modified
 
@@ -150,10 +150,10 @@ ls -la ~/usability/workflows/*.md
 
 **Execute ONLY for Option 2** (Project Commands → Central Repo):
 
-If files were synced TO ~/usability/workflows/, commit and push:
+If files were synced TO ~/mango/workflows/, commit and push:
 
 ```bash
-cd ~/usability
+cd ~/mango
 git add workflows/*.md
 git status
 
@@ -164,7 +164,7 @@ git diff --staged --stat
 git commit -m "$(cat <<'EOF'
 Sync workflows from project commands to central repository
 
-Updated workflow files from ./.claude/commands/ to ~/usability/workflows/
+Updated workflow files from ./.claude/commands/ to ~/mango/workflows/
 
  Generated with [Claude Code](https://claude.com/claude-code)
 

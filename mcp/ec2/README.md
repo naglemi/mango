@@ -86,7 +86,7 @@ mcp__ec2__diagnose_crash(instance_id="i-0abc123")
 ## Installation
 
 ```bash
-cd ~/usability/mcp/ec2
+cd ~/mango/mcp/ec2
 ./setup-ec2-mcp.sh
 ```
 

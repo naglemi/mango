@@ -82,7 +82,7 @@ For HPC and cloud infrastructure:
 ### Fresh Installation
 
 ```bash
-cd ~/usability
+cd ~/mango
 ./setup.sh
 ```
 
@@ -93,7 +93,7 @@ This will:
 ### Just Tmux
 
 ```bash
-cd ~/usability/tmux
+cd ~/mango/tmux
 ./setup-tmux.sh
 ```
 
@@ -102,7 +102,7 @@ cd ~/usability/tmux
 If you want to change your menu selections later:
 
 ```bash
-cd ~/usability/tmux
+cd ~/mango/tmux
 python3 configure-menu.py
 bash generate-tmux-conf.sh
 tmux source-file ~/.tmux.conf
@@ -174,20 +174,20 @@ Core shortcuts:
 If you want to manually edit which items appear:
 
 1. Edit `~/.tmux-menu-config.txt`
-2. Run `bash ~/usability/tmux/generate-tmux-conf.sh`
+2. Run `bash ~/mango/tmux/generate-tmux-conf.sh`
 3. Reload tmux: `tmux source-file ~/.tmux.conf`
 
 ### Adding Custom Items
 
 To add your own menu items:
 
-1. Edit `~/usability/tmux/configure-menu.py`
+1. Edit `~/mango/tmux/configure-menu.py`
 2. Add entries to the `MENU_ITEMS` list
 3. Re-run the configuration
 
 ### Template Modification
 
-The base template is at `~/usability/tmux/tmux.conf.template`
+The base template is at `~/mango/tmux/tmux.conf.template`
 - Contains all non-menu configuration
 - `{{MENU_ITEMS}}` placeholder is replaced with your selections
 
@@ -261,8 +261,8 @@ ForwardX11 yes
 ### Menu items not appearing
 Check that the helper scripts exist:
 ```bash
-ls ~/usability/tmux/*.sh
-ls ~/usability/tmux/*.py
+ls ~/mango/tmux/*.sh
+ls ~/mango/tmux/*.py
 ```
 
 ### GPU tools failing

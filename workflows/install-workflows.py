@@ -28,7 +28,7 @@ MCP_CONFIGS = {
         "command": ["node", "{script_path}"],
         "script": "mcp/report/index.js",
         "env_vars": {
-            "REPORT_BUCKET": "usability-reports",
+            "REPORT_BUCKET": "mango-reports",
             "AWS_REGION": "us-east-1",
             "REPORT_EMAIL_FROM": "your-email@example.com",
             "REPORT_EMAIL_TO": "your-email@example.com",

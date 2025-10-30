@@ -125,7 +125,7 @@ GPT-5 needs to see EVERY piece of our code that's involved in the issue.
 
 Use ninjagrab.sh to collect files. For example:
 ```bash
-~/usability/workflows/ninjagrab.sh \
+~/mango/workflows/ninjagrab.sh \
   [list all relevant source files for the issue] \
   [configuration files] \
   [scripts and build files] \

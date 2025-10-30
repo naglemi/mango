@@ -4,7 +4,7 @@
 
 import { S3Client, GetObjectCommand, ListObjectsV2Command } from '@aws-sdk/client-s3';
 
-// Hardcoded credentials for usability-reports bucket
+// Hardcoded credentials for mango-reports bucket
 const AWS_CREDENTIALS = {
   accessKeyId: 'AKIATQPD7I25OJYV77MB',
   secretAccessKey: '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',
@@ -20,7 +20,7 @@ async function getReportByTag(tag) {
 
   // List all objects in the bucket
   const listCommand = new ListObjectsV2Command({
-    Bucket: 'usability-reports',
+    Bucket: 'mango-reports',
     Prefix: 'Detective Righteous/',
   });
 
@@ -42,7 +42,7 @@ async function getReportByTag(tag) {
   for (const metaFile of metadataFiles) {
     try {
       const getMetaCommand = new GetObjectCommand({
-        Bucket: 'usability-reports',
+        Bucket: 'mango-reports',
         Key: metaFile.Key,
       });
 
@@ -59,7 +59,7 @@ async function getReportByTag(tag) {
 
         // Get the actual report HTML
         const getReportCommand = new GetObjectCommand({
-          Bucket: 'usability-reports',
+          Bucket: 'mango-reports',
           Key: metadata.indexKey,
         });
 

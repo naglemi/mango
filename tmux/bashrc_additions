@@ -1,7 +1,7 @@
-# Usability Toolkit Bashrc Additions
+# Mango Toolkit Bashrc Additions
 
-# Add usability toolkit to PATH
-export PATH="$PATH:$HOME/usability"
+# Add mango toolkit to PATH
+export PATH="$PATH:$HOME/mango"
 
 # Report MCP Configuration
 # Options: Set to a folder path for local storage (e.g., "$HOME/reports")
@@ -150,9 +150,9 @@ if [ -f ~/.usability_tmux_prompt ]; then
 fi
 
 # Aliases for quick access
-alias mobile='~/usability/mobile.sh'
-alias invoke-persona='~/usability/invoke-persona.sh'
-alias distribute-rules='~/usability/distribute-ai-rules.sh'
+alias mobile='~/mango/mobile.sh'
+alias invoke-persona='~/mango/invoke-persona.sh'
+alias distribute-rules='~/mango/distribute-ai-rules.sh'
 
 # Function to quickly create and attach to a tmux session
 tm() {
