@@ -1,4 +1,0 @@
-0000000000000000000000000000000000000000 6968c5f14d011378782ddafb0c6a4039e3dfee16 Michael Nagle <michael.nagle@oregonstate.edu> 1760119618 -0400	branch: Created from HEAD
-6968c5f14d011378782ddafb0c6a4039e3dfee16 f32434a07487c4170a5054e6f93f3eec03749e19 Michael Nagle <michael.nagle@oregonstate.edu> 1760120181 -0400	commit: feat: Add configurable hook output level
-f32434a07487c4170a5054e6f93f3eec03749e19 d01381234a64b6ce81bf8b8dceab14775a08bed0 Michael Nagle <michael.nagle@oregonstate.edu> 1760121395 -0400	commit: feat: Add alwayson daemon for autonomous GPU monitoring
-d01381234a64b6ce81bf8b8dceab14775a08bed0 d4c67c9c26606f361035aee06e3ddf818f3e7e80 Michael Nagle <michael.nagle@oregonstate.edu> 1760121645 -0400	commit: docs: Update spec for unblogged config detection workflow

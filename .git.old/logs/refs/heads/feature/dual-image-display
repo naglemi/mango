@@ -1,3 +1,0 @@
-0000000000000000000000000000000000000000 331da88843a33670e1ed8d0211fa54b962425ebd Michael Nagle <michael.nagle@oregonstate.edu> 1751371750 +0000	branch: Created from HEAD
-331da88843a33670e1ed8d0211fa54b962425ebd 447de5efa022746665ad3ac17fd1dedf594b9178 Michael Nagle <michael.nagle@oregonstate.edu> 1751371834 +0000	commit: feat: dual image display - S3 URLs + email attachments
-447de5efa022746665ad3ac17fd1dedf594b9178 0264fd625c084c9bc48f0ae865d3e4505ae279e1 Michael Nagle <michael.nagle@oregonstate.edu> 1751463400 +0000	commit: feat: implement dual image display - all images via S3 URLs + smart email attachments

@@ -1,4 +1,0 @@
-0000000000000000000000000000000000000000 15b8d73c2eefb0c79d195de273b4d0b2357f28e6 Michael Nagle <michael.nagle@oregonstate.edu> 1754948246 +0000	branch: Created from HEAD
-15b8d73c2eefb0c79d195de273b4d0b2357f28e6 4d65f4d868f23f76de7677a7c8f11b47bc057f50 Michael Nagle <michael.nagle@oregonstate.edu> 1754948258 +0000	commit: Add comprehensive hook management system for Claude Code
-4d65f4d868f23f76de7677a7c8f11b47bc057f50 0dd993c4b116ed5694b2a588534b926db3f5774f Michael Nagle <michael.nagle@oregonstate.edu> 1754948697 +0000	commit: Fix sync-workflows.sh to work from any directory
-0dd993c4b116ed5694b2a588534b926db3f5774f 5220a076274a8e770e802d002cd4facfb33e35e7 Michael Nagle <michael.nagle@oregonstate.edu> 1754953003 +0000	commit: Add test script for hook display functionality

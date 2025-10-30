@@ -1,4 +1,0 @@
-0000000000000000000000000000000000000000 e5fb9be12b031b6939c46b5098fb433e491bde0a Michael Nagle <michael.nagle@oregonstate.edu> 1759722954 -0400	branch: Created from HEAD
-e5fb9be12b031b6939c46b5098fb433e491bde0a d3f3ce5382569164b04cb5070897f0dd8bba6e55 Michael Nagle <michael.nagle@oregonstate.edu> 1759723020 -0400	commit: feat: Add specification for W&B monitor menu fix
-d3f3ce5382569164b04cb5070897f0dd8bba6e55 7891295be90cc35821b34c0145ba2268b822bea1 Michael Nagle <michael.nagle@oregonstate.edu> 1759723238 -0400	commit: docs: Add detailed failure information to W&B monitor spec
-7891295be90cc35821b34c0145ba2268b822bea1 6968c5f14d011378782ddafb0c6a4039e3dfee16 Michael Nagle <michael.nagle@oregonstate.edu> 1760070781 -0400	commit: Add /launch-backend workflow for unified service launcher

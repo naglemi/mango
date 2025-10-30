@@ -53,6 +53,7 @@ node_modules/
 
 # Old/deprecated files
 OLD/
+.git.old/
 .affidavits/
 temp/
 aws_credentials.sh
