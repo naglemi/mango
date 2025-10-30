@@ -18,6 +18,7 @@ mcp/MICHAEL_NAGLE_SETUP.md
 # Personal workflow files
 PLEA.md
 .claude/
+.specify/
 specs/
 
 # One-off utility scripts (not part of core system)
