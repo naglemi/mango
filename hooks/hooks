@@ -1,0 +1,3 @@
+#!/bin/bash
+# Hook selector launcher script
+exec python3 "$HOME/usability/hooks/hook_selector.py" "$@"

@@ -1,0 +1,43 @@
+#!/bin/bash
+set -euo pipefail
+
+# Generate final tmux.conf from template and menu configuration
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TEMPLATE="$SCRIPT_DIR/tmux.conf.template"
+MENU_CONFIG="$HOME/.tmux-menu-config.txt"
+SETTINGS_FILE="$HOME/.claude/settings.json"
+OUTPUT="$HOME/.tmux.conf"
+
+# Check if menu configuration exists
+if [ ! -f "$MENU_CONFIG" ]; then
+    echo "ERROR: Menu configuration not found at $MENU_CONFIG"
+    echo "Please run configure-menu.py first"
+    exit 1
+fi
+
+# Read menu items
+MENU_ITEMS=$(cat "$MENU_CONFIG")
+
+# Read template and replace placeholder
+if [ ! -f "$TEMPLATE" ]; then
+    echo "ERROR: Template not found at $TEMPLATE"
+    exit 1
+fi
+
+# Replace {{MENU_ITEMS}} placeholder with actual menu content
+while IFS= read -r line; do
+    if [[ "$line" == *"{{MENU_ITEMS}}"* ]]; then
+        echo "$MENU_ITEMS"
+    else
+        printf '%s\n' "$line"
+    fi
+done < "$TEMPLATE" > "$OUTPUT"
+
+echo " Generated $OUTPUT from template"
+echo " Configured menu with your selections"
+
+# Generate mobile menu pages
+echo ""
+echo "Generating mobile menu configuration..."
+bash "$SCRIPT_DIR/generate-mobile-menu.sh"

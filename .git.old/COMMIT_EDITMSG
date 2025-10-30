@@ -1,0 +1,17 @@
+Add estimate-mcp FastMCP server to usability MCPs
+
+- Moved estimate-mcp from ~/qsar/ to ~/usability/mcp/
+- Updated configure-mcp-servers.sh to use estimate-mcp command
+- Installed as /home/ubuntu/.local/bin/estimate-mcp
+- Added to ~/.claude.json MCP servers config
+
+FastMCP version with:
+- Pydantic schemas for type safety
+- Clean JSON output
+- Single tool: analyze_completion
+
+Usage:
+  mcp__estimate__analyze_completion({
+    pattern: 'data/*/DONE',
+    total: 474
+  })

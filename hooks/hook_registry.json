@@ -1,0 +1,422 @@
+{
+  "version": "1.0.0",
+  "hooks": {
+    "protect-env-vars": {
+      "name": "Protect Env Vars",
+      "description": "",
+      "script": "protect-env-vars.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-python-inline": {
+      "name": "Block Python -c",
+      "description": "",
+      "script": "block-python-c-inline.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-dangerous-git": {
+      "name": "Block Git Add -A",
+      "description": "",
+      "script": "block_dangerous_git.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "notify-on-completion": {
+      "name": "Notify Complete",
+      "description": "",
+      "script": "stop-hook-pushover.py",
+      "event": "Stop",
+      "matcher": "",
+      "timeout": 5,
+      "tags": ["notification"],
+      "author": "system",
+      "compatible_with": ["global", "project"],
+      "dependencies": ["pushover"]
+    },
+    "block-error-handling": {
+      "name": "No Try/Catch",
+      "description": "",
+      "script": "block-error-handling.py",
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|MultiEdit",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "python-lint-before-run": {
+      "name": "Python Lint Before Run",
+      "description": "",
+      "script": "python-lint-before-run.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-bad-filenames": {
+      "name": "Block Bad Filenames",
+      "description": "",
+      "script": "block-bad-filenames.py",
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|MultiEdit",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-filename-proliferation": {
+      "name": "Block Filename Proliferation",
+      "description": "",
+      "script": "block-filename-proliferation.py",
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|MultiEdit",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "limit-scripts-per-dir": {
+      "name": "Limit Scripts Per Dir",
+      "description": "",
+      "script": "limit-scripts-per-dir.py",
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|MultiEdit",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"],
+      "configurable": true,
+      "config_var": "MAX_SCRIPTS_PER_DIR",
+      "config_desc": "Maximum script files per directory (blank = no limit)"
+    },
+    "block-git-stash": {
+      "name": "Block Git Stash",
+      "description": "",
+      "script": "block-git-stash.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-rm": {
+      "name": "Block RM",
+      "description": "",
+      "script": "block-rm.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-scripts-dirty-git": {
+      "name": "Block Scripts Dirty",
+      "description": "",
+      "script": "block-scripts-dirty-git.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-error-hiding": {
+      "name": "Block Error Hiding",
+      "description": "",
+      "script": "block-error-hiding.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-head-tail": {
+      "name": "Block Head/Tail",
+      "description": "",
+      "script": "block-head-tail.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-search-tools": {
+      "name": "Block Search Tools",
+      "description": "",
+      "script": "block-search-tools.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-hook-editing": {
+      "name": "Block Hook Editing",
+      "description": "",
+      "script": "block-hook-editing.py",
+      "event": "PreToolUse",
+      "matcher": "Bash|Write|Edit|MultiEdit",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-sed-editing": {
+      "name": "Block Sed Editing",
+      "description": "",
+      "script": "block-sed-editing.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "limit-line-count": {
+      "name": "Limit Line Count",
+      "description": "",
+      "script": "limit-line-count.py",
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|MultiEdit",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"],
+      "configurable": true,
+      "config_var": "MAX_LINE_COUNT",
+      "config_desc": "Maximum lines per file (default: 300)"
+    },
+    "strict-limit-line-count": {
+      "name": "Strict Line Limit",
+      "description": "",
+      "script": "strict-limit-line-count.py",
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|MultiEdit",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"],
+      "configurable": true,
+      "config_var": "MAX_LINE_COUNT",
+      "config_desc": "Maximum lines per file (default: 300)"
+    },
+    "block-all-scripts": {
+      "name": "Block New Scripts",
+      "description": "",
+      "script": "block-all-scripts.py",
+      "event": "PreToolUse",
+      "matcher": "Write",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-scripts-outside-debug": {
+      "name": "Scripts in Debug Only",
+      "description": "",
+      "script": "block-scripts-outside-debug.py",
+      "event": "PreToolUse",
+      "matcher": "Write",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-md-files": {
+      "name": "Block MD Files",
+      "description": "",
+      "script": "block-md-files.py",
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|MultiEdit",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-reports-no-images": {
+      "name": "Require Report Images",
+      "description": "",
+      "script": "block-reports-no-images.py",
+      "event": "PreToolUse",
+      "matcher": "mcp__report__send_report",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "force-foreground-bash": {
+      "name": "Force Foreground Bash",
+      "description": "",
+      "script": "force-foreground-bash.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["control"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "force-background-bash": {
+      "name": "Force Background Bash",
+      "description": "",
+      "script": "force-background-bash.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["control"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-glob-tool": {
+      "name": "Block Glob Tool",
+      "description": "",
+      "script": "block-glob-tool.py",
+      "event": "PreToolUse",
+      "matcher": "Glob",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-grep-tool": {
+      "name": "Block Grep Tool",
+      "description": "",
+      "script": "block-grep-tool.py",
+      "event": "PreToolUse",
+      "matcher": "Grep",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-search-tool": {
+      "name": "Block Search Tool",
+      "description": "",
+      "script": "block-search-tool.py",
+      "event": "PreToolUse",
+      "matcher": "Search",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-commit-to-main": {
+      "name": "Block Main Commits",
+      "description": "",
+      "script": "block-commit-to-main.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-cd": {
+      "name": "Block CD Commands",
+      "description": "",
+      "script": "block-cd.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["control"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-homedir-edits": {
+      "name": "Block Home Dir Edits",
+      "description": "",
+      "script": "block-homedir-edits.py",
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|MultiEdit",
+      "timeout": 5,
+      "tags": ["security"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-dir-and-mv": {
+      "name": "Block Dir and MV",
+      "description": "",
+      "script": "block-dir-and-mv.py",
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "enforce-sequential-scripts": {
+      "name": "Enforce Sequential Scripts",
+      "description": "",
+      "script": "enforce-sequential-scripts.py",
+      "event": "PreToolUse",
+      "matcher": "Write",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "auto-lint-python": {
+      "name": "Auto Lint Python",
+      "description": "",
+      "script": "auto-lint-python.py",
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|MultiEdit",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    },
+    "block-file-versions": {
+      "name": "Block File Versions",
+      "description": "",
+      "script": "block-file-versions.py",
+      "event": "PreToolUse",
+      "matcher": "Write|Edit|MultiEdit",
+      "timeout": 5,
+      "tags": ["quality"],
+      "author": "system",
+      "compatible_with": ["global", "project"]
+    }
+  },
+  "categories": {
+    "security": {
+      "name": "Security",
+      "description": "",
+      "hooks": ["protect-env-vars", "block-python-inline", "block-dangerous-git", "block-git-stash", "block-rm", "block-scripts-dirty-git", "block-error-hiding", "block-head-tail", "block-search-tools", "block-hook-editing", "block-sed-editing", "block-all-scripts", "block-scripts-outside-debug", "block-glob-tool", "block-grep-tool", "block-search-tool", "block-commit-to-main", "block-homedir-edits"]
+    },
+    "quality": {
+      "name": "Code Quality",
+      "description": "",
+      "hooks": ["block-error-handling", "python-lint-before-run", "block-bad-filenames", "block-filename-proliferation", "limit-scripts-per-dir", "limit-line-count", "strict-limit-line-count", "block-md-files", "block-reports-no-images", "block-dir-and-mv", "enforce-sequential-scripts", "auto-lint-python", "block-file-versions"]
+    },
+    "productivity": {
+      "name": "Productivity",
+      "description": "",
+      "hooks": ["notify-on-completion"]
+    },
+    "control": {
+      "name": "Execution Control",
+      "description": "",
+      "hooks": ["force-foreground-bash", "force-background-bash", "block-cd"]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "estimate-mcp"
+version = "0.1.0"
+description = "Fact-based time estimation MCP server using filesystem timestamps"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "QSAR Project" }
+]
+dependencies = [
+    "pydantic>=2.0.0",
+    "mcp>=0.1.0",
+]
+
+[project.scripts]
+estimate-mcp = "estimate_mcp.server:main"
+
+[tool.setuptools]
+packages = ["estimate_mcp", "estimate_mcp.tools"]

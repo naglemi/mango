@@ -1,0 +1,7 @@
+0000000000000000000000000000000000000000 5cfa5fba3899a9eae49f3cd8cacb0ddd211e6e47 Michael Nagle <michael.nagle@oregonstate.edu> 1761749690 -0400	branch: Created from HEAD
+5cfa5fba3899a9eae49f3cd8cacb0ddd211e6e47 6978371cd5c37e1e7cf778310a257e6b6da6e755 Michael Nagle <michael.nagle@oregonstate.edu> 1761760035 -0400	commit: fix: remove blank padding from mobile menu popup edges
+6978371cd5c37e1e7cf778310a257e6b6da6e755 94e6b5ec0d1ff7968ac5be47895e9f835619fecf Michael Nagle <michael.nagle@oregonstate.edu> 1761760337 -0400	commit: feat: rename project to Mango and add mango-launcher alias
+94e6b5ec0d1ff7968ac5be47895e9f835619fecf f605eb80e3c5e35e0492d8790241c315074fec6a Michael Nagle <michael.nagle@oregonstate.edu> 1761760553 -0400	commit: feat: add Settings option to Mango launcher menu
+f605eb80e3c5e35e0492d8790241c315074fec6a 7c8e4cc486cb15190692003f11eb187cd7c09c1b Michael Nagle <michael.nagle@oregonstate.edu> 1761760873 -0400	commit: docs: drastically simplify README to essentials only
+7c8e4cc486cb15190692003f11eb187cd7c09c1b 29540a44cdc7f28f41783d88432e5d6b9353a2ce Michael Nagle <michael.nagle@oregonstate.edu> 1761761452 -0400	commit: docs: refocus README on agent management and oversight
+29540a44cdc7f28f41783d88432e5d6b9353a2ce d5cc85592ab4474366075fc32035ab0205164b14 Michael Nagle <michael.nagle@oregonstate.edu> 1761763765 -0400	commit: fix: correct Stop hook format and tmux menu dimensions

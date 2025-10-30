@@ -1,0 +1,2 @@
+[console_scripts]
+estimate-mcp = estimate_mcp.server:main
