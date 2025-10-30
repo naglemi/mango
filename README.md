@@ -81,6 +81,8 @@ Critical hooks for preventing agent mistakes:
 - **Require human approval**: Block dangerous operations until you review
 - **Audit trail**: Every command logged and reviewable
 
+A checkbox interface for managing hooks can be accessed by the `hooks` command or the icon or list menus.
+
 37 hooks total available via `./setup-hooks.sh` - pick what you need.
 
 ## How to Use
