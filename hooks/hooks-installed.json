@@ -34,9 +34,7 @@
     "auto-lint-python",
     "notify-on-completion",
     "force-foreground-bash",
-    "force-background-bash",
-    "tmux-color-idle",
-    "tmux-color-active"
+    "force-background-bash"
   ],
   "hooks": {
     "block-rm": {
