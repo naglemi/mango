@@ -1,0 +1,77 @@
+{
+  "version": "1.0.0",
+  "installed_hooks": [
+    "block-rm",
+    "block-git-stash",
+    "protect-env-vars",
+    "block-python-inline",
+    "block-error-hiding",
+    "block-hook-editing",
+    "block-sed-editing",
+    "block-homedir-edits",
+    "python-lint-before-run",
+    "block-file-versions"
+  ],
+  "hooks": {
+    "block-rm": {
+      "id": "block-rm",
+      "name": "Block RM Commands",
+      "description": "Prevents dangerous 'rm' commands that could delete files. Use file manager or specific operations instead.",
+      "category": "security"
+    },
+    "block-git-stash": {
+      "id": "block-git-stash",
+      "name": "Block Git Stash",
+      "description": "Prevents git stash commands which can hide work. Encourages explicit commits instead.",
+      "category": "security"
+    },
+    "protect-env-vars": {
+      "id": "protect-env-vars",
+      "name": "Protect Environment Variables",
+      "description": "Prevents modifications to critical environment variables like PATH, AWS credentials.",
+      "category": "security"
+    },
+    "block-python-inline": {
+      "id": "block-python-inline",
+      "name": "Block Python -c",
+      "description": "Prevents inline Python execution (python -c). Create proper scripts in debugging_scripts/ instead.",
+      "category": "security"
+    },
+    "block-error-hiding": {
+      "id": "block-error-hiding",
+      "name": "Block Error Hiding",
+      "description": "Prevents bash commands with error hiding (2>/dev/null, || true). Errors should be visible.",
+      "category": "security"
+    },
+    "block-hook-editing": {
+      "id": "block-hook-editing",
+      "name": "Block Hook Editing",
+      "description": "Prevents AI from editing hook files. Hooks should be managed by humans.",
+      "category": "security"
+    },
+    "block-sed-editing": {
+      "id": "block-sed-editing",
+      "name": "Block Sed Editing",
+      "description": "Prevents sed for editing. Use Edit tool instead for reviewable changes.",
+      "category": "security"
+    },
+    "block-homedir-edits": {
+      "id": "block-homedir-edits",
+      "name": "Block Home Directory Edits",
+      "description": "Prevents editing files outside current project directory. Protects system files.",
+      "category": "security"
+    },
+    "python-lint-before-run": {
+      "id": "python-lint-before-run",
+      "name": "Python Lint Before Run",
+      "description": "Auto-lints Python files before execution. Catches syntax errors early.",
+      "category": "quality"
+    },
+    "block-file-versions": {
+      "id": "block-file-versions",
+      "name": "Block File Versions",
+      "description": "Prevents creating versioned file copies (_v1, _v2). Use git instead.",
+      "category": "quality"
+    }
+  }
+}

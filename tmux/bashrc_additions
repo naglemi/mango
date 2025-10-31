@@ -1,0 +1,171 @@
+# Mango Toolkit Bashrc Additions
+
+# Add mango toolkit to PATH
+export PATH="$PATH:$HOME/mango"
+
+# Report MCP Configuration
+# Options: Set to a folder path for local storage (e.g., "$HOME/reports")
+#          Set to "EMAIL" or leave unset for S3/SES cloud mode
+export USABILIDE_REPORT_FOLDER="EMAIL"  # Change to folder path for local mode
+
+# Tmux session management with numbered menu and timeout
+if [ -f ~/.usability_tmux_prompt ]; then
+    # Only run if we're in an interactive shell and not already in tmux
+    if [[ $- == *i* ]] && [ -z "$TMUX" ]; then
+        # Check if there are any tmux sessions
+        if command -v tmux &> /dev/null && tmux ls &> /dev/null 2>&1; then
+            echo ""
+            echo "═══════════════════════════════════════════"
+            echo "           TMUX SESSIONS AVAILABLE"
+            echo "═══════════════════════════════════════════"
+            echo ""
+            echo "   iOS Quick Shortcuts:"
+            echo "  • Ctrl-g    → Show menu (all options)"
+            echo "  • Ctrl-p    → Mobile menu (large buttons)"
+            echo "  • Ctrl-n    → New window"
+            echo "  • Ctrl-s    → Next window"
+            echo "  • Ctrl-D    → Break pane to window"
+            echo "  • Ctrl-x    → Close pane (y/p/s/n)"
+            echo "  • Ctrl-w    → Close window (y/n)"
+            echo "───────────────────────────────────────────"
+            
+            # Build numbered menu
+            sessions=()
+            while IFS= read -r line; do
+                sessions+=("$line")
+            done < <(tmux ls 2>/dev/null)
+            
+            # Display sessions with numbers
+            for i in "${!sessions[@]}"; do
+                session_num=$((i + 1))
+                session_info="${sessions[$i]}"
+                session_name="${session_info%%:*}"
+                session_details="${session_info#*:}"
+                printf "  [%d] %-20s %s\n" "$session_num" "$session_name" "$session_details"
+            done
+            
+            echo ""
+            echo "  [0] Create new tmux session"
+            echo "  [w] Wait (pause timer)"
+            echo "  [x] Continue without tmux"
+            echo "───────────────────────────────────────────"
+            
+            # Function to show countdown
+            show_countdown() {
+                local remaining=$1
+                printf "\r  Auto-continuing in %d seconds... (Press any key to select) " "$remaining"
+            }
+            
+            # Read with timeout
+            choice=""
+            for ((i=10; i>0; i--)); do
+                show_countdown $i
+                if read -r -s -n 1 -t 1 choice; then
+                    # User pressed a key, clear the countdown line
+                    printf "\r%-60s\r" " "
+                    break
+                fi
+            done
+            
+            if [ -z "$choice" ]; then
+                # Timeout reached, continue without tmux
+                printf "\r%-60s\r" " "
+                echo "  ⏰ Timeout - continuing without tmux"
+                echo "═══════════════════════════════════════════"
+                echo ""
+            else
+                # User made a choice, get the rest of the input if it's a multi-digit number
+                if [[ "$choice" =~ [0-9] ]]; then
+                    echo -n "$choice"
+                    read -r rest_of_choice
+                    choice="${choice}${rest_of_choice}"
+                fi
+                
+                if [[ "$choice" == "0" ]]; then
+                    echo "   Creating new tmux session"
+                    echo "═══════════════════════════════════════════"
+                    tmux new
+                elif [[ "$choice" == "w" ]] || [[ "$choice" == "W" ]]; then
+                    echo "  ⏸  Timer paused - press any key to select option"
+                    read -r -s -n 1 choice
+                    # Process the new choice (recursive call to same logic)
+                    if [[ "$choice" == "0" ]]; then
+                        echo "   Creating new tmux session"
+                        echo "═══════════════════════════════════════════"
+                        tmux new
+                    elif [[ "$choice" == "x" ]] || [[ "$choice" == "X" ]]; then
+                        echo "   Continuing without tmux"
+                        echo "═══════════════════════════════════════════"
+                        echo ""
+                    elif [[ "$choice" =~ ^[1-9][0-9]*$ ]]; then
+                        # Convert to array index
+                        index=$((choice - 1))
+                        if [ $index -lt ${#sessions[@]} ]; then
+                            session_name="${sessions[$index]%%:*}"
+                            echo "   Attaching to session: $session_name"
+                            echo "═══════════════════════════════════════════"
+                            tmux attach -t "$session_name"
+                        else
+                            echo "   Invalid selection: $choice"
+                            echo "═══════════════════════════════════════════"
+                            echo ""
+                        fi
+                    else
+                        echo "   Invalid selection: $choice"
+                        echo "═══════════════════════════════════════════"
+                        echo ""
+                    fi
+                elif [[ "$choice" == "x" ]] || [[ "$choice" == "X" ]]; then
+                    echo "   Continuing without tmux"
+                    echo "═══════════════════════════════════════════"
+                    echo ""
+                elif [[ "$choice" =~ ^[1-9][0-9]*$ ]]; then
+                    # Convert to array index
+                    index=$((choice - 1))
+                    if [ $index -lt ${#sessions[@]} ]; then
+                        session_name="${sessions[$index]%%:*}"
+                        echo "   Attaching to session: $session_name"
+                        echo "═══════════════════════════════════════════"
+                        tmux attach -t "$session_name"
+                    else
+                        echo "   Invalid selection: $choice"
+                        echo "═══════════════════════════════════════════"
+                        echo ""
+                    fi
+                else
+                    # Try to interpret as session name
+                    if tmux has-session -t "$choice" 2>/dev/null; then
+                        echo "   Attaching to session: $choice"
+                        echo "═══════════════════════════════════════════"
+                        tmux attach -t "$choice"
+                    else
+                        echo "   Session not found: $choice"
+                        echo "═══════════════════════════════════════════"
+                        echo ""
+                    fi
+                fi
+            fi
+        fi
+    fi
+fi
+
+# Aliases for quick access
+alias mobile='~/mango/mobile.sh'
+alias invoke-persona='~/mango/invoke-persona.sh'
+alias distribute-rules='~/mango/distribute-ai-rules.sh'
+
+# Function to quickly create and attach to a tmux session
+tm() {
+    if [ -z "$1" ]; then
+        # No argument - try to attach to 'mobile' or create it
+        tmux attach -t mobile 2>/dev/null || tmux new -s mobile
+    else
+        # Session name provided
+        tmux attach -t "$1" 2>/dev/null || tmux new -s "$1"
+    fi
+}
+
+# Show tmux sessions if any exist (and not in tmux)
+if [ -z "$TMUX" ] && command -v tmux &> /dev/null && tmux ls &> /dev/null 2>&1; then
+    echo " Tip: Type 'tm' to attach to tmux, or 'tm <name>' for a specific session"
+fi

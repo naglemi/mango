@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+# Vim-based file spectator with mouse scrolling support
+
+FILE="$1"
+
+if [[ -z "$FILE" ]]; then
+    echo "Usage: spectate <file>"
+    exit 1
+fi
+
+if [[ ! -f "$FILE" ]]; then
+    echo "Error: File not found: $FILE"
+    exit 1
+fi
+
+# Use interval from environment or default to 3 seconds
+INTERVAL="${SPECTATOR_INTERVAL:-3000}"
+INTERVAL_MS="$INTERVAL"
+
+# Check if file is markdown - use frogmouth if it is
+if [[ "${FILE,,}" =~ \.(md|markdown)$ ]]; then
+    if command -v frogmouth &> /dev/null; then
+        exec frogmouth "$FILE"
+    else
+        echo "Warning: frogmouth not found, falling back to vim"
+    fi
+fi
+
+# Create temporary vimrc for spectator mode
+VIMRC=$(mktemp)
+trap "rm -f $VIMRC" EXIT
+
+cat > "$VIMRC" << 'EOF'
+" Spectator Mode vim configuration
+" Enable mouse support for scrolling
+set mouse=a
+set ttymouse=sgr
+
+" Auto-reload when file changes
+set autoread
+au CursorHold,CursorHoldI * checktime
+au FocusGained,BufEnter * checktime
+
+" Read-only mode (prevent accidental edits)
+set readonly
+set nomodifiable
+
+" Visual settings
+set number
+set nowrap
+set scrolloff=5
+syntax on
+colorscheme desert
+
+" Status line
+set laststatus=2
+set statusline=\ SPECTATOR\ MODE:\ %F\ \ \ [READ-ONLY]\ \ \ %{strftime('%H:%M:%S')}
+
+" Disable swap and backup files
+set noswapfile
+set nobackup
+set nowritebackup
+
+" Update time for auto-reload (in milliseconds)
+" This will be overridden by command line argument
+set updatetime=3000
+
+" Key mappings
+" q to quit
+nnoremap q :qa!<CR>
+" Disable modification keys
+nnoremap i <Nop>
+nnoremap a <Nop>
+nnoremap o <Nop>
+nnoremap I <Nop>
+nnoremap A <Nop>
+nnoremap O <Nop>
+EOF
+
+# Launch vim with spectator configuration
+exec vim -u "$VIMRC" \
+    -c "set updatetime=$INTERVAL_MS" \
+    -c "normal! G" \
+    "$FILE"

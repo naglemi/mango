@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "workflows": [
+    "blog",
+    "chill_until_it_finishes",
+    "debt-audit",
+    "deepseek-plea",
+    "discuss",
+    "flowchart",
+    "gpt5plea",
+    "help",
+    "implementplan",
+    "new",
+    "newtask",
+    "nocode",
+    "plea",
+    "read",
+    "report",
+    "sync-workflows"
+  ],
+  "mcps": [
+    "pushover",
+    "report",
+    "ninjagrab",
+    "process-monitor",
+    "sleep",
+    "gpt5-proxy",
+    "grok-proxy"
+  ]
+}

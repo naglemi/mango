@@ -1,0 +1,183 @@
+# Minimal tmux config with working mouse support and clipboard integration
+set -g mouse on
+set -g history-limit 50000
+
+# Set proper terminal type to fix carriage return issues in TUI apps
+# This prevents Claude Code, tqdm, ora, and other progress indicators from creating cascading lines
+# tmux-256color tells apps to use tmux-compatible escape sequences instead of xterm
+set -g default-terminal "tmux-256color"
+
+# Terminal overrides for better mouse support over SSH and in various terminals
+set -ga terminal-overrides ',*:Tc'  # True color support
+set -ga terminal-overrides ',xterm*:RGB'
+set -ga terminal-overrides ',*256col*:RGB'
+set -ga terminal-overrides ',*:Ms=\E]52;%p1%s;%p2%s\007'  # OSC 52 clipboard
+set -ga terminal-overrides ',xterm*:XT'  # Extended mouse mode
+set -as terminal-features ',*:RGB'  # RGB color support
+
+# Visual feedback for pane borders (makes it easier to see where to drag)
+set -g pane-border-style fg=colour240
+set -g pane-active-border-style fg=colour51,bold
+
+# Single most common working wheel binding configuration
+bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'"
+
+# System clipboard integration - Ctrl+Shift+C/V for copy/paste
+# Copy from tmux to system clipboard
+bind -n C-S-c run "tmux save-buffer - | xclip -i -selection clipboard"
+# Paste from system clipboard to tmux
+bind -n C-S-v run "xclip -o -selection clipboard | tmux load-buffer - && tmux paste-buffer"
+# Select and copy entire history - Ctrl+Shift+A
+bind -n C-S-a run "tmux capture-pane -S - -p | xclip -i -selection clipboard"
+
+# Vi mode for better copy operations
+setw -g mode-keys vi
+# Copy mode bindings for selecting and copying
+bind -T copy-mode-vi v send -X begin-selection
+bind -T copy-mode-vi y send -X copy-pipe-and-cancel "xclip -i -selection clipboard"
+bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "xclip -i -selection clipboard"
+
+# Natural pane splitting - more intuitive than % and "
+bind | split-window -h -c "#{pane_current_path}"  # Split vertically with |
+bind - split-window -v -c "#{pane_current_path}"  # Split horizontally with -
+
+# Easy pane navigation with Alt+Arrow keys (no prefix needed)
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# Resize panes with Ctrl+Shift+Arrow keys
+bind -n C-S-Left resize-pane -L 5
+bind -n C-S-Right resize-pane -R 5
+bind -n C-S-Up resize-pane -U 5
+bind -n C-S-Down resize-pane -D 5
+
+# Close pane with Ctrl+Shift+X
+bind -n C-S-x kill-pane
+
+# Reload config with prefix+r
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded!"
+
+# Right-click context menu
+# Right click on pane to get menu with useful options
+bind -n MouseDown3Pane select-pane -t= \; display-menu -T "Tmux Menu" -x M -y M \
+{{MENU_ITEMS}}
+
+# Right-click on window tabs (status bar) to rename windows
+bind -n MouseDown3Status display-menu -T "Window Menu" -x W -y W \
+    "Rename Window"     r "command-prompt -I '#W' 'rename-window \"%%\"'" \
+    "New Window"        n "new-window" \
+    "Kill Window"       z "confirm-before -p 'Kill window #I:#W? (y/n)' kill-window" \
+    "Combine All Windows" W "display-popup -E -w 90% -h 90% '$HOME/mango/tmux/consolidate-windows.sh'" \
+    "" \
+    "Even Layout (1 Row)" e "select-layout even-horizontal" \
+    "Grid Layout (2+ Rows)" f "select-layout tiled"
+
+# iOS-friendly shortcuts (single control keys, no shift required)
+# Ctrl-g (^g) - Show standard menu (replaces right-click)
+bind -n C-g display-menu -T "Tmux Menu" \
+{{MENU_ITEMS}}
+
+# Ctrl-p (^p) - Show mobile menu with large touch-friendly grid (4x5 square buttons)
+bind -n C-p display-popup -E -x 0 -y 0 -w 100% -h 100% '$HOME/mango/tmux/mobile-menu.sh'
+
+# Kill pane (respects skip_close_pane_confirmation setting)
+bind -n C-x {{CLOSE_PANE_CMD}}
+
+# Ctrl-Shift-Z alternative for kill pane
+bind -n C-Z {{CLOSE_PANE_CMD}}
+
+# Remove any old Ctrl-r bindings
+unbind -n C-r
+
+# Window management shortcuts (iOS-friendly)
+# Create new window
+bind -n C-n new-window
+
+# Next window only (no previous)
+bind -n C-s next-window
+
+# Break pane into its own window
+bind -n C-D break-pane
+
+# Close window with confirmation (override default)
+bind -n C-w display-menu -T "Close Window?" \
+    "Yes (Close)"   z "kill-window" \
+    "No (Cancel)"   n ""
+
+# Status bar configuration for window tabs
+set -g status on
+set -g status-position top
+set -g status-interval 5
+
+# Status bar colors and style - grayscale theme
+set -g status-style 'bg=#2a2a2a,fg=#d0d0d0'
+
+# Window tabs configuration
+set -g window-status-format ' #I:#W '
+set -g window-status-current-format ' #I:#W '
+set -g window-status-separator ''
+set -g window-status-style 'bg=#3a3a3a,fg=#d0d0d0'
+set -g window-status-current-style 'bg=#5a5a5a,fg=#ffffff,bold'
+
+# Left side: LIST button (opens display menu)
+set -g status-left 'L I S T  '
+set -g status-left-length 20
+set -g status-left-style 'bg=#4a4a4a,fg=#ffffff,bold'
+
+# Right side: date and time + mobile menu trigger (will be overridden by continuum)
+set -g status-right-length 100
+
+# Make the [ICONS] section clickable to open mobile menu
+bind -n MouseDown1StatusRight display-popup -E -x 0 -y 0 -w 63 -h 46 '$HOME/mango/tmux/mobile-menu.sh'
+
+# Make the [LIST] section clickable to open display menu
+bind -n MouseDown1StatusLeft display-menu -T "Tmux Menu" \
+{{MENU_ITEMS}}
+
+# Center: window list (tabs)
+set -g status-justify centre
+
+# ============================================================================
+# Plugin Configuration - TPM (Tmux Plugin Manager)
+# ============================================================================
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'kiyoon/treemux'
+
+# tmux-resurrect configuration
+# Uses default keybindings: Prefix + Ctrl-s (save), Prefix + Ctrl-r (restore)
+set -g @resurrect-dir '~/.tmux/resurrect'
+
+# Restore pane contents (experimental but useful)
+set -g @resurrect-capture-pane-contents 'on'
+
+# Restore vim sessions if Session.vim exists
+set -g @resurrect-strategy-vim 'session'
+
+# Restore neovim sessions
+set -g @resurrect-strategy-nvim 'session'
+
+# Restore additional programs
+set -g @resurrect-processes 'ssh python python3 vim nvim htop top glances nvtop gpustat ~claude'
+
+# treemux configuration
+# Uses default keybinding: Prefix + Ctrl-w for tree view
+set -g @treemux-tree-nvim-init-file '~/.tmux/plugins/treemux/configs/treemux_init.lua'
+set -g @treemux-tree-focus 'smart'
+
+# tmux-continuum configuration
+# Automatic restore on tmux start
+set -g @continuum-restore 'on'
+
+# Auto-save interval in minutes (default is 15)
+set -g @continuum-save-interval '15'
+
+# Show status in status bar: ICONS button only (no continuum status clutter)
+set -g status-right '#[bg=#4a4a4a,fg=#ffffff,bold] I C O N S 🥭 '
+
+# Initialize TPM (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

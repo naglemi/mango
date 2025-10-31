@@ -1,0 +1,159 @@
+#!/bin/bash
+# Robust tmux session selector using proper tmux -F format
+# No fragile parsing, no mapfile, no process substitution
+
+# DEBUG EVERYTHING WITH TIMESTAMPS
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Starting tmux-session-menu.sh" >&2
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: TERM='$TERM'" >&2
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Interactive flag='$-'" >&2
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: TMUX='$TMUX'" >&2
+
+# Check if we're in an interactive terminal context
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Checking if TERM is empty" >&2
+if [ -z "$TERM" ]; then
+    echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: TERM is empty, checking stty" >&2
+    if ! stty -g &>/dev/null 2>&1; then
+        echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: stty failed, non-interactive context, exiting" >&2
+        return 0 2>/dev/null || exit 0
+    fi
+fi
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Terminal check passed" >&2
+
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Checking if already in tmux" >&2
+if [ -n "$TMUX" ]; then
+    echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Already in tmux, exiting" >&2
+    return 0 2>/dev/null || exit 0
+fi
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Not in tmux" >&2
+
+# Check if tmux command exists
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Checking if tmux command exists" >&2
+if ! command -v tmux &> /dev/null; then
+    echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: tmux command not found, exiting" >&2
+    return 0 2>/dev/null || exit 0
+fi
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: tmux command found at $(which tmux)" >&2
+
+# ROBUST METHOD: Get session names using tmux's machine-readable format
+# This avoids ALL parsing issues - no colons, no cut, no mapfile, no process substitution
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Getting sessions using 'tmux list-sessions -F #S'" >&2
+session_list=$(tmux list-sessions -F '#S' 2>/dev/null || true)
+
+if [ -z "$session_list" ]; then
+    echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: No tmux sessions found" >&2
+    has_sessions=0
+else
+    echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Sessions found: $(echo "$session_list" | wc -l)" >&2
+    has_sessions=1
+fi
+
+# Print header
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Printing header" >&2
+echo ""
+echo "═══════════════════════════════════════════"
+if [ "$has_sessions" = "1" ]; then
+    echo "          📺 TMUX SESSIONS AVAILABLE"
+else
+    echo "            📺 TMUX MENU"
+fi
+echo "═══════════════════════════════════════════"
+
+# Try fzf first (the good option)
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Checking for fzf" >&2
+if command -v fzf &>/dev/null; then
+    echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: fzf found, using it" >&2
+    echo "  Use arrows/type to filter, Enter to select, Esc to skip"
+    echo "───────────────────────────────────────────"
+    
+    # Build options: existing sessions + control options
+    if [ "$has_sessions" = "1" ]; then
+        all_options=$(echo -e "$session_list\n[New Session]\n[Skip]")
+    else
+        all_options=$(echo -e "[New Session]\n[Skip]")
+    fi
+    
+    choice=$(echo "$all_options" | fzf --height=10 --reverse --prompt="  Select> " --no-info)
+    
+    case "$choice" in
+        "[New Session]")
+            echo "  ✓ Creating new tmux session"
+            read -r -e -p "  Session name (or Enter for default): " session_name
+            if [ -n "$session_name" ]; then
+                tmux new -s "$session_name"
+            else
+                tmux new
+            fi
+            ;;
+        "[Skip]"|"")
+            echo "  ✓ Continuing without tmux"
+            ;;
+        *)
+            echo "  ✓ Attaching to session: $choice"
+            tmux attach -t "$choice"
+            ;;
+    esac
+else
+    echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: fzf not found, using fallback menu" >&2
+    # FALLBACK: Simple numbered menu
+    # NOTE: User explicitly approved this fallback for systems without fzf
+    
+    echo "  Sessions:"
+    echo "───────────────────────────────────────────"
+    
+    if [ "$has_sessions" = "1" ]; then
+        # Convert session list to array for numbered display
+        count=1
+        while IFS= read -r session; do
+            printf "  [%d] %s\n" "$count" "$session"
+            ((count++))
+        done <<< "$session_list"
+    fi
+    
+    echo "  [0] Create new session"
+    echo "  [Enter] Skip and continue to shell"
+    echo "───────────────────────────────────────────"
+    
+    # Use readline-enabled input (robust)
+    echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: Reading user input" >&2
+    read -r -e -p "  Enter choice: " choice
+    echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: User entered: '$choice'" >&2
+    
+    if [ -z "$choice" ]; then
+        echo "  ✓ Continuing without tmux"
+    elif [ "$choice" = "0" ]; then
+        echo "  ✓ Creating new tmux session"
+        read -r -e -p "  Session name (or Enter for default): " session_name
+        if [ -n "$session_name" ]; then
+            tmux new -s "$session_name"
+        else
+            tmux new
+        fi
+    elif [[ "$choice" =~ ^[1-9][0-9]*$ ]] && [ "$has_sessions" = "1" ]; then
+        # User entered a number - find the corresponding session
+        count=1
+        while IFS= read -r session; do
+            if [ "$count" = "$choice" ]; then
+                echo "  ✓ Attaching to session: $session"
+                tmux attach -t "$session"
+                break
+            fi
+            ((count++))
+        done <<< "$session_list"
+        
+        if [ "$count" -ne "$choice" ]; then
+            echo "  ❌ Invalid selection: $choice"
+        fi
+    else
+        # Try as session name directly
+        if [ "$has_sessions" = "1" ] && echo "$session_list" | grep -q "^$choice$"; then
+            echo "  ✓ Attaching to session: $choice"
+            tmux attach -t "$choice"
+        else
+            echo "  ❌ Session not found: $choice"
+        fi
+    fi
+fi
+
+echo "[$(date +%H:%M:%S.%N)] TMUX-MENU: End of script" >&2
+echo "═══════════════════════════════════════════"
+echo ""
