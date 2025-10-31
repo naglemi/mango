@@ -135,6 +135,35 @@ def main():
     # Update settings
     settings["hooks"] = hooks_config
 
+    # Set default custom settings if not present
+    if "alwaysThinkingEnabled" not in settings:
+        settings["alwaysThinkingEnabled"] = True
+
+    if "custom_status_line_enabled" not in settings:
+        settings["custom_status_line_enabled"] = True
+
+    if "skip_close_pane_confirmation" not in settings:
+        settings["skip_close_pane_confirmation"] = True
+
+    if "tmux_color_notifications_enabled" not in settings:
+        settings["tmux_color_notifications_enabled"] = True
+
+    if "tmux_idle_color" not in settings:
+        settings["tmux_idle_color"] = "blue"
+
+    if "tmux_active_color" not in settings:
+        settings["tmux_active_color"] = "default"
+
+    if "statusLine" not in settings:
+        statusline_script = Path.home() / ".claude" / "statusline.sh"
+        if statusline_script.exists():
+            settings["statusLine"] = {
+                "type": "command",
+                "command": str(statusline_script),
+                "padding": 0,
+                "updateIntervalSeconds": 30
+            }
+
     # Save settings
     settings_file = save_claude_settings(settings)
 
