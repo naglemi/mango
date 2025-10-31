@@ -448,6 +448,7 @@ Environment variables are configured during setup:
 - `$BLOG_PATH` - Path to your blog repository
 - `$BLOG_NOTEBOOKS_DIR` - Notebooks directory (default: _notebooks)
 - `$BLOG_REPORTS_DIR` - Reports directory (default: _reports)
+- `$ENSURE_BLOGPOST` - Wait for Vercel deployment to complete (default: "true" for REPO mode, "false" for FOLDER mode)
 
 ## Step-by-Step Blog Creation Process
 
@@ -798,6 +799,21 @@ echo " Blog post pushed and will appear online shortly!"
 ```
 
 **Without this step, your post exists only locally and will NOT be visible on the website!**
+
+### ENSURE_BLOGPOST Setting
+
+When `$ENSURE_BLOGPOST` is set to `"true"` (default for REPO mode):
+- Blog submission scripts will wait for Vercel deployment to complete
+- Script will not finish until deployment succeeds without errors
+- Provides immediate feedback if deployment fails
+- Prevents assuming success when deployment actually failed
+
+When set to `"false"` (default for FOLDER mode):
+- Scripts complete immediately after git push
+- No deployment verification
+- Useful for local/folder-only workflows
+
+Configure this setting in the tmux settings menu (`~/mango/tmux/settings-menu.py`) or by editing `~/.claude/settings.json` directly.
 
 ## Section A: Creating Experimental Results Posts
 

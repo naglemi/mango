@@ -99,6 +99,12 @@ class SettingsMenu:
                 "name": "Skip Close Pane Confirmation",
                 "description": "Close pane immediately without confirmation menu (Ctrl+X)",
                 "type": "bool"
+            },
+            {
+                "key": "ensure_blogpost_deployment",
+                "name": "Ensure Blog Deployment Completes",
+                "description": "Wait for Vercel deployment to finish before completing blog submission",
+                "type": "bool"
             }
         ]
         self.current_index = 0
@@ -223,6 +229,10 @@ class SettingsMenu:
                                 break
                         break
 
+                # Determine ENSURE_BLOGPOST value: ON by default only in REPO mode
+                ensure_deployment = self.settings.get("ensure_blogpost_deployment", blog_mode == "REPO")
+                ensure_value = "true" if ensure_deployment else "false"
+
                 blog_config = [
                     "\n",
                     "# Blog Configuration\n",
@@ -230,6 +240,7 @@ class SettingsMenu:
                     f'export BLOG_PATH="{blog_path}"\n',
                     f'export BLOG_NOTEBOOKS_DIR="{blog_notebooks}"\n',
                     f'export BLOG_REPORTS_DIR="{blog_reports}"\n',
+                    f'export ENSURE_BLOGPOST="{ensure_value}"\n',
                 ]
 
                 for j, config_line in enumerate(blog_config):
@@ -451,9 +462,14 @@ class SettingsMenu:
         blog_mode = self.settings.get("blog_mode", "SKIP")
         if blog_mode != "SKIP":
             blog_path = self.settings.get("blog_path", "")
+            ensure_deployment = self.settings.get("ensure_blogpost_deployment", blog_mode == "REPO")
             print(f"  • Blog Workflow: {blog_mode} mode")
             if blog_path:
                 print(f"    Path: {blog_path}")
+            if ensure_deployment:
+                print(f"    Ensure Deployment: ON (will wait for Vercel)")
+            else:
+                print(f"    Ensure Deployment: OFF")
             print("  • Run 'source ~/.bashrc' to apply")
         print()
 
