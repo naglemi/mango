@@ -74,10 +74,15 @@ def build_hook_configuration(installed_hooks, registry, hooks_dir):
         matcher = hook_info.get("matcher", "")
         timeout = hook_info.get("timeout", 5)
 
-        # Build hook entry
+        # Build hook entry - handle both .py and .sh scripts
+        if script.endswith('.py'):
+            command = f"python3 {hooks_dir}/{script}"
+        else:
+            command = f"{hooks_dir}/{script}"
+
         hook_entry = {
             "type": "command",
-            "command": f"python3 {hooks_dir}/{script}"
+            "command": command
         }
 
         if timeout:

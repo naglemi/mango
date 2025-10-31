@@ -3,14 +3,40 @@
   "installed_hooks": [
     "block-rm",
     "block-git-stash",
+    "block-dangerous-git",
     "protect-env-vars",
     "block-python-inline",
+    "block-scripts-dirty-git",
     "block-error-hiding",
-    "block-hook-editing",
+    "block-head-tail",
+    "block-search-tools",
     "block-sed-editing",
+    "block-all-scripts",
+    "block-scripts-outside-debug",
+    "block-glob-tool",
+    "block-grep-tool",
+    "block-search-tool",
+    "block-commit-to-main",
+    "block-cd",
     "block-homedir-edits",
+    "block-error-handling",
     "python-lint-before-run",
-    "block-file-versions"
+    "block-bad-filenames",
+    "block-filename-proliferation",
+    "limit-scripts-per-dir",
+    "limit-line-count",
+    "strict-limit-line-count",
+    "block-md-files",
+    "block-reports-no-images",
+    "enforce-sequential-scripts",
+    "block-file-versions",
+    "block-dir-and-mv",
+    "auto-lint-python",
+    "notify-on-completion",
+    "force-foreground-bash",
+    "force-background-bash",
+    "tmux-color-idle",
+    "tmux-color-active"
   ],
   "hooks": {
     "block-rm": {
@@ -25,6 +51,12 @@
       "description": "Prevents git stash commands which can hide work. Encourages explicit commits instead.",
       "category": "security"
     },
+    "block-dangerous-git": {
+      "id": "block-dangerous-git",
+      "name": "Block Git Add -A",
+      "description": "Prevents 'git add -A' and 'git add .' commands. Use explicit file adds instead.",
+      "category": "security"
+    },
     "protect-env-vars": {
       "id": "protect-env-vars",
       "name": "Protect Environment Variables",
@@ -37,10 +69,28 @@
       "description": "Prevents inline Python execution (python -c). Create proper scripts in debugging_scripts/ instead.",
       "category": "security"
     },
+    "block-scripts-dirty-git": {
+      "id": "block-scripts-dirty-git",
+      "name": "Block Scripts with Dirty Git",
+      "description": "Prevents running scripts when git working tree is dirty. Encourages committing before execution.",
+      "category": "security"
+    },
     "block-error-hiding": {
       "id": "block-error-hiding",
       "name": "Block Error Hiding",
       "description": "Prevents bash commands with error hiding (2>/dev/null, || true). Errors should be visible.",
+      "category": "security"
+    },
+    "block-head-tail": {
+      "id": "block-head-tail",
+      "name": "Block Head/Tail",
+      "description": "Prevents head/tail commands. Use Read tool instead for better control.",
+      "category": "security"
+    },
+    "block-search-tools": {
+      "id": "block-search-tools",
+      "name": "Block Search Tools",
+      "description": "Prevents find/grep commands. Use Glob/Grep tools instead.",
       "category": "security"
     },
     "block-hook-editing": {
@@ -55,11 +105,59 @@
       "description": "Prevents sed for editing. Use Edit tool instead for reviewable changes.",
       "category": "security"
     },
+    "block-all-scripts": {
+      "id": "block-all-scripts",
+      "name": "Block New Scripts",
+      "description": "Prevents creating any new script files. Extreme measure for production safety.",
+      "category": "security"
+    },
+    "block-scripts-outside-debug": {
+      "id": "block-scripts-outside-debug",
+      "name": "Scripts in Debug Dir Only",
+      "description": "Requires all new scripts to be in debugging_scripts/ directory. Keeps repo organized.",
+      "category": "security"
+    },
+    "block-glob-tool": {
+      "id": "block-glob-tool",
+      "name": "Block Glob Tool",
+      "description": "Prevents Glob tool usage. Forces reading specific files instead of pattern matching.",
+      "category": "security"
+    },
+    "block-grep-tool": {
+      "id": "block-grep-tool",
+      "name": "Block Grep Tool",
+      "description": "Prevents Grep tool usage. Forces reading entire files instead of searching.",
+      "category": "security"
+    },
+    "block-search-tool": {
+      "id": "block-search-tool",
+      "name": "Block Search Tool",
+      "description": "Prevents Search tool usage. Part of enforcing full file reads.",
+      "category": "security"
+    },
+    "block-commit-to-main": {
+      "id": "block-commit-to-main",
+      "name": "Block Main Branch Commits",
+      "description": "Prevents direct commits to main/master branch. Use feature branches.",
+      "category": "security"
+    },
+    "block-cd": {
+      "id": "block-cd",
+      "name": "Block CD Commands",
+      "description": "Prevents 'cd' commands. Use absolute paths instead for clarity.",
+      "category": "security"
+    },
     "block-homedir-edits": {
       "id": "block-homedir-edits",
       "name": "Block Home Directory Edits",
       "description": "Prevents editing files outside current project directory. Protects system files.",
       "category": "security"
+    },
+    "block-error-handling": {
+      "id": "block-error-handling",
+      "name": "Block Try/Catch",
+      "description": "Prevents excessive try/catch blocks. Encourages fail-fast, linear code.",
+      "category": "quality"
     },
     "python-lint-before-run": {
       "id": "python-lint-before-run",
@@ -67,11 +165,89 @@
       "description": "Auto-lints Python files before execution. Catches syntax errors early.",
       "category": "quality"
     },
+    "block-bad-filenames": {
+      "id": "block-bad-filenames",
+      "name": "Block Bad Filenames",
+      "description": "Prevents files with spaces, special chars, or overly long names.",
+      "category": "quality"
+    },
+    "block-filename-proliferation": {
+      "id": "block-filename-proliferation",
+      "name": "Block Filename Proliferation",
+      "description": "Prevents _final, _v2, _fixed suffixes. Use version control instead.",
+      "category": "quality"
+    },
+    "limit-scripts-per-dir": {
+      "id": "limit-scripts-per-dir",
+      "name": "Limit Scripts Per Directory",
+      "description": "Limits number of script files per directory. Keeps repos organized.",
+      "category": "quality"
+    },
+    "limit-line-count": {
+      "id": "limit-line-count",
+      "name": "Limit Line Count (Soft)",
+      "description": "Warns about files exceeding line limit (default: 300). Configurable.",
+      "category": "quality"
+    },
+    "strict-limit-line-count": {
+      "id": "strict-limit-line-count",
+      "name": "Strict Line Limit",
+      "description": "Blocks files exceeding line limit. Stricter version of limit-line-count.",
+      "category": "quality"
+    },
+    "block-md-files": {
+      "id": "block-md-files",
+      "name": "Block Markdown Files",
+      "description": "Prevents creating documentation files. For production-only projects.",
+      "category": "quality"
+    },
+    "block-reports-no-images": {
+      "id": "block-reports-no-images",
+      "name": "Require Report Images",
+      "description": "Requires MCP reports to include images. Ensures visual documentation.",
+      "category": "quality"
+    },
+    "enforce-sequential-scripts": {
+      "id": "enforce-sequential-scripts",
+      "name": "Enforce Sequential Script Numbering",
+      "description": "Requires scripts to be numbered (01_, 02_, etc). Maintains execution order clarity.",
+      "category": "quality"
+    },
     "block-file-versions": {
       "id": "block-file-versions",
       "name": "Block File Versions",
       "description": "Prevents creating versioned file copies (_v1, _v2). Use git instead.",
       "category": "quality"
+    },
+    "block-dir-and-mv": {
+      "id": "block-dir-and-mv",
+      "name": "Block Dir and MV",
+      "description": "Prevents 'dir' and 'mv' commands. Use ls and specific file operations.",
+      "category": "quality"
+    },
+    "auto-lint-python": {
+      "id": "auto-lint-python",
+      "name": "Auto-Lint Python",
+      "description": "Automatically formats Python code before saving. Uses black/autopep8.",
+      "category": "quality"
+    },
+    "notify-on-completion": {
+      "id": "notify-on-completion",
+      "name": "Completion Notifications",
+      "description": "Sends push notification when Claude finishes a task. Requires Pushover.",
+      "category": "productivity"
+    },
+    "force-foreground-bash": {
+      "id": "force-foreground-bash",
+      "name": "Force Foreground Bash",
+      "description": "Forces all bash commands to run in foreground. Prevents background processes.",
+      "category": "control"
+    },
+    "force-background-bash": {
+      "id": "force-background-bash",
+      "name": "Force Background Bash",
+      "description": "Forces all bash commands to run in background. Allows concurrent operations.",
+      "category": "control"
     }
   }
 }
