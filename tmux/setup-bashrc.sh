@@ -33,7 +33,7 @@ echo ""
 
 # Check if already installed
 if grep -q "# Mango Toolkit Bashrc Additions" "$SHELL_CONFIG" 2>/dev/null; then
-    echo "  Usability toolkit already configured in $SHELL_CONFIG"
+    echo "  Mango toolkit already configured in $SHELL_CONFIG"
     echo -n "Reinstall? [y/N]: "
     read -r response
     if [[ ! "$response" =~ ^[yY] ]]; then
@@ -119,7 +119,7 @@ echo "# End Mango Toolkit" >> "$SHELL_CONFIG"
 echo " Added mango toolkit configuration"
 echo ""
 
-# Create symlink to usability directory if not in home
+# Create symlink to mango directory if not in home
 if [ "$SCRIPT_DIR" != "$HOME/mango" ]; then
     if [ -e "$HOME/mango" ]; then
         echo "  $HOME/mango already exists"
@@ -133,7 +133,7 @@ echo ""
 echo " Bashrc setup complete!"
 echo ""
 echo "Features added:"
-echo "  • Usability toolkit in PATH"
+echo "  • Mango toolkit in PATH"
 if [ "$ENABLE_TMUX_PROMPT" = true ]; then
     echo "  • Tmux session prompt on login"
 fi

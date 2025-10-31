@@ -126,12 +126,12 @@ mcp_servers = {
 }
 
 # Check for mango-dev and add its MCP servers
-usability_dev = Path.home() / 'mango-dev'
-if usability_dev.exists():
+mango_dev = Path.home() / 'mango-dev'
+if mango_dev.exists():
     print("  Detected ~/mango-dev - adding development MCP servers...")
 
     # Expanse MCP
-    expanse_server = usability_dev / 'mcp_servers/expanse/server.py'
+    expanse_server = mango_dev / 'mcp_servers/expanse/server.py'
     if expanse_server.exists():
         mcp_servers['expanse'] = {
             'command': 'python3',

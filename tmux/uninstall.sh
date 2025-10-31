@@ -51,14 +51,14 @@ if [ -f "$SHELL_CONFIG" ]; then
     # Remove standalone tm() function if it exists outside our section
     sed -i '/^tm() {$/,/^}$/d' "$SHELL_CONFIG" 2>/dev/null
     
-    # Remove mobile alias if it references usability
-    sed -i '/alias mobile.*usability\/mobile\.sh/d' "$SHELL_CONFIG" 2>/dev/null
+    # Remove mobile alias if it references mango
+    sed -i '/alias mobile.*mango\/mobile\.sh/d' "$SHELL_CONFIG" 2>/dev/null
     
     # Remove invoke-persona alias
-    sed -i '/alias invoke-persona.*usability/d' "$SHELL_CONFIG" 2>/dev/null
+    sed -i '/alias invoke-persona.*mango/d' "$SHELL_CONFIG" 2>/dev/null
     
     # Remove distribute-rules alias
-    sed -i '/alias distribute-rules.*usability/d' "$SHELL_CONFIG" 2>/dev/null
+    sed -i '/alias distribute-rules.*mango/d' "$SHELL_CONFIG" 2>/dev/null
 fi
 
 # 5. Remove tmux plugin manager (if installed)

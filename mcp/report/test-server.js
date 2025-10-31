@@ -3,7 +3,7 @@ import { spawn } from 'child_process';
 console.log('Testing MCP server...');
 
 const server = spawn('node', ['index.js'], {
-  cwd: '/Users/michaelnagle/code/usability/mcp/report',
+  cwd: '/Users/michaelnagle/code/mango/mcp/report',
   env: {
     ...process.env,
     REPORT_BUCKET: 'usability-reports',

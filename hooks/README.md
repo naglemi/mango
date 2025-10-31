@@ -19,7 +19,7 @@ The hook system provides:
 
 ```bash
 # 1. Install the hook system
-cd /path/to/usability/hooks
+cd /path/to/mango/hooks
 ./install.sh
 
 # 2. Set up tmux integration (optional but recommended)
@@ -42,7 +42,7 @@ sudo ./setup-hooks-command.sh
 ```bash
 hooks          # Launch interactive control panel
 # or
-python3 /path/to/usability/hooks/hook_selector.py
+python3 /path/to/mango/hooks/hook_selector.py
 ```
 
 **Method 3: From Claude Code**
@@ -142,10 +142,10 @@ The system requires these components:
 which hooks
 
 # If not, run setup again
-sudo /path/to/usability/hooks/setup-hooks-command.sh
+sudo /path/to/mango/hooks/setup-hooks-command.sh
 
 # Or run directly
-python3 /path/to/usability/hooks/hook_selector.py
+python3 /path/to/mango/hooks/hook_selector.py
 ```
 
 ### Hooks Not Triggering

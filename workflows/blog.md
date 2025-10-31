@@ -472,7 +472,7 @@ notebook = {
                 "---\n",
                 "title: 'Your Post Title'\n",
                 "excerpt: 'Brief description'\n",
-                "date: '2025-10-14T12:00:00.000Z'\n",
+                "date: 'AUTO'\n",
                 "author:\n",
                 "  name: Michael Nagle\n",
                 "  picture: '/assets/blog/authors/jupyter.png'\n",
@@ -543,7 +543,7 @@ cd $BLOG_PATH/$BLOG_NOTEBOOKS_DIR/
 ---
 title: 'Your Experiment Title'  # Use proper title with spaces, not underscores
 excerpt: 'Brief description of the analysis'
-date: '2025-09-16T12:00:00.000Z'  #  CRITICAL: Must be ISO 8601 format! NOT Unix timestamp!
+date: 'AUTO'  #  CRITICAL: Use 'AUTO' to automatically insert git commit timestamp in ISO 8601 format!
 author:
   name: Your Name
   picture: '/assets/blog/authors/jupyter.png'
@@ -652,10 +652,11 @@ python execute_notebooks.py  # Executes all notebooks
 
 **The blog build will FAIL if frontmatter is incorrect!** Common errors that break Vercel deployment:
 
-1. **Date MUST be ISO 8601 format**: `'2025-09-27T12:00:00.000Z'`
+1. **Date should use 'AUTO' for programmatic timestamps**:
+   -  CORRECT: `date: 'AUTO'` (automatically replaced with actual git commit timestamp)
    -  WRONG: `'1759023326.3970373'` (Unix timestamp - causes "Invalid time value" error)
    -  WRONG: `'September 27, 2025'` (text date)
-   -  CORRECT: `'2025-09-27T12:00:00.000Z'`
+   -  ACCEPTABLE: `'2025-09-27T12:00:00.000Z'` (ISO 8601 format, but hardcoded - not recommended)
 
 2. **Title must be readable**: Use spaces, not underscores
    -  WRONG: `'2025_09_27_Frank_Wolfe_Vs_Gradient_Descent'`
@@ -1191,7 +1192,7 @@ print(f"MGDA converges {faster_by:.1f}x faster than weighted sum")
 ---
 title: 'Understanding [Algorithm/Concept Name]: A Step-by-Step Journey'
 excerpt: 'An intuitive yet rigorous exploration of [topic] with complete math and code'
-date: '2025-09-27T12:00:00.000Z'
+date: 'AUTO'
 author:
   name: Your Name
   picture: '/assets/blog/authors/jupyter.png'

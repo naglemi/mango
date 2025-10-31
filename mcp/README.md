@@ -23,7 +23,7 @@ Without these environment variables, Pushover MCP WILL NOT WORK!
 
 ### Quick Setup (AFTER setting env vars):
 ```bash
-cd usability
+cd mango
 ./setup-claude-mcp.sh
 ```
 
@@ -48,7 +48,7 @@ MCP (Model Context Protocol) allows AI assistants like Claude to use external to
    - `mcp__pushover-notify__send_notification`
 
 2. If tools are missing:
-   - Run: `cd usability && ./setup-claude-mcp.sh`
+   - Run: `cd mango && ./setup-claude-mcp.sh`
    - Human must restart Claude Code
    - Tools will then be available
 
@@ -333,7 +333,7 @@ claude mcp add-json pushover-notify '{
 # Add Report MCP
 claude mcp add-json report-s3 '{
   "command": "node",
-  "args": ["/absolute/path/to/usability/mcp/report/index.js"],
+  "args": ["/absolute/path/to/mango/mcp/report/index.js"],
   "env": {
     "REPORT_BUCKET": "usability-reports",
     "AWS_REGION": "us-east-1",
@@ -344,7 +344,7 @@ claude mcp add-json report-s3 '{
 }' -s local
 ```
 
-Or simply run: `cd usability && ./setup-claude-mcp.sh`
+Or simply run: `cd mango && ./setup-claude-mcp.sh`
 ```
 
 ## Examples

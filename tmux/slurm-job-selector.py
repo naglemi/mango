@@ -185,7 +185,7 @@ class SlurmJobSelector:
 
             try:
                 # Use the SSH wrapper for TOTP handling
-                ssh_wrapper = Path.home() / 'usability' / 'auth' / 'ssh-wrapper'
+                ssh_wrapper = Path.home() / 'mango' / 'auth' / 'ssh-wrapper'
                 if ssh_wrapper.exists():
                     subprocess.run([str(ssh_wrapper), node])
                 else:

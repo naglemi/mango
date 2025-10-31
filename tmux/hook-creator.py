@@ -172,7 +172,7 @@ if __name__ == "__main__":
     def _commit_global_changes(self, hook_filename: str, command: str):
         """Commit the hook to git and rerun hooks installation."""
         try:
-            # Change to usability directory
+            # Change to mango directory
             os.chdir(self.mango_path)
 
             print("\n Committing hook to git...")

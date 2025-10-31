@@ -114,7 +114,7 @@ def main():
         # Extract folder name from transcript path
         folder_name = "Claude"
         if transcript_path and "-home-ubuntu-" in transcript_path:
-            # Extract from path like /home/ubuntu/.claude/projects/-home-ubuntu-usability/...
+            # Extract from path like /home/ubuntu/.claude/projects/-home-ubuntu-mango/...
             parts = transcript_path.split("-home-ubuntu-")
             if len(parts) > 1:
                 folder_name = parts[1].split("/")[0]

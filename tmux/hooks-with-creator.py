@@ -57,7 +57,7 @@ def show_main_menu():
 
         if key == 'M':
             # Run the original hook selector
-            hooks_dir = Path.home() / "usability" / "hooks"
+            hooks_dir = Path.home() / "mango" / "hooks"
             hook_selector = hooks_dir / "hook_selector.py"
             if hook_selector.exists():
                 subprocess.run([sys.executable, str(hook_selector)])

@@ -9,7 +9,7 @@ export PATH="$PATH:$HOME/mango"
 export USABILIDE_REPORT_FOLDER="EMAIL"  # Change to folder path for local mode
 
 # Tmux session management with numbered menu and timeout
-if [ -f ~/.usability_tmux_prompt ]; then
+if [ -f ~/.mango_tmux_prompt ]; then
     # Only run if we're in an interactive shell and not already in tmux
     if [[ $- == *i* ]] && [ -z "$TMUX" ]; then
         # Check if there are any tmux sessions
