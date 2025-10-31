@@ -209,6 +209,22 @@ print(df.to_string(index=False))
 
 The blog system uses a **Jupyter notebook-first approach** where all content is executable and reproducible. Blog posts are generated from executed notebooks, ensuring every claim is backed by runnable code using REAL DATA.
 
+### Quick Start (TL;DR)
+
+```bash
+# 1. Create notebook in _notebooks/
+cd $BLOG_PATH/$BLOG_NOTEBOOKS_DIR/
+
+# 2. Write notebook with real data from W&B or main codebase
+# ... (use Write tool to create .ipynb file)
+
+# 3. Submit the blog post (automated)
+cd $BLOG_PATH
+python submit_blog_post.py $BLOG_NOTEBOOKS_DIR/your-notebook.ipynb
+```
+
+The `submit_blog_post.py` script automates validation, execution, conversion, image fixing, git commit/push, and Vercel deployment verification.
+
 ## Step 0: Get W&B Data Using MCP (REQUIRED!)
 
 **CRITICAL: NEVER USE INLINE PYTHON SCRIPTS FOR W&B**
@@ -1577,22 +1593,28 @@ Check these notebooks for reference (in your blog's `$BLOG_NOTEBOOKS_DIR/`):
 
 ### Automated Pipeline (RECOMMENDED)
 
-**Use the automated script for error-free blog generation:**
+**Use the automated submission script for error-free blog generation:**
 
 ```bash
-# For a single notebook
-./generate_blog_post.sh your-notebook.ipynb
+cd $BLOG_PATH
 
-# For all notebooks in _notebooks/
-./generate_blog_post.sh
+# Submit a blog post (full automation)
+python submit_blog_post.py $BLOG_NOTEBOOKS_DIR/your-notebook.ipynb
 ```
 
-The script handles:
--  Notebook execution (generates plots)
--  Conversion to markdown
--  Output verification
--  Git commit and push (optional)
--  Error checking at each step
+The `submit_blog_post.py` script handles:
+1. ✓ Validates notebook integrity (detects fabricated data)
+2. ✓ Executes notebook (generates plots with real data)
+3. ✓ Converts to markdown
+4. ✓ Fixes image paths (relative → absolute)
+5. ✓ Commits and pushes to GitHub
+6. ✓ Waits for Vercel deployment (if ENSURE_BLOGPOST=true)
+7. ✓ Fails loudly if any step fails
+
+**Environment variables used:**
+- `$BLOG_PATH` - Blog repository path
+- `$BLOG_NOTEBOOKS_DIR` - Notebooks subdirectory
+- `$ENSURE_BLOGPOST` - "true" to wait for deployment, "false" to skip
 
 ### Manual Pipeline (if needed)
 
